@@ -1,0 +1,25 @@
+name: "Project Weblog"
+title: "ISSS608 Project Weblog"
+description: |
+  ISSS608 Project Weblog
+output_dir: "_site"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - text: "Project Pages"
+      menu:
+        - text: "Proposal"
+          href: Proposal.html
+        - text: "Poster"
+          href: poster.html
+        - text: "Application"
+          href: application.html
+        - text: "Research Paper"
+          href: paper.html
+        - text: "---"
+        - text: "Application User Guide"
+          href: application_user_guide.html
+output: distill::distill_article
