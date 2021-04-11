@@ -13,6 +13,10 @@ navbar:
       menu:
         - text: "Proposal"
           href: Proposal.html
+        - text: "Individual Assignment"
+          menu:
+            - text: "EDA"
+            - href: Project_assignment.html
         - text: "Poster"
           href: poster.html
         - text: "Application"
