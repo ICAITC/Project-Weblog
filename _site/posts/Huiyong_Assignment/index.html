@@ -1,0 +1,2807 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+<title>ISSS608 Project Weblog: Analysis of crimes in London - EDA using Spatial clustering, hotspot clustering and trend analysis</title>
+
+<meta property="description" itemprop="description" content="The analysis is part of the bigger Shiny-based Visual Analytics Application (Shiny-VAA) project for the course ISSS608- Visual Analytics offered in SMU MITB. This analysis will focus in details on 2 components of the project, namely Exploratory Data Analysis (EDA) and spatial clustering."/>
+
+
+<!--  https://schema.org/Article -->
+<meta property="article:published" itemprop="datePublished" content="2021-04-12"/>
+<meta property="article:created" itemprop="dateCreated" content="2021-04-12"/>
+<meta name="article:author" content="Tan Huiyong"/>
+
+<!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+<meta property="og:title" content="ISSS608 Project Weblog: Analysis of crimes in London - EDA using Spatial clustering, hotspot clustering and trend analysis"/>
+<meta property="og:type" content="article"/>
+<meta property="og:description" content="The analysis is part of the bigger Shiny-based Visual Analytics Application (Shiny-VAA) project for the course ISSS608- Visual Analytics offered in SMU MITB. This analysis will focus in details on 2 components of the project, namely Exploratory Data Analysis (EDA) and spatial clustering."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:site_name" content="ISSS608 Project Weblog"/>
+
+<!--  https://dev.twitter.com/cards/types/summary -->
+<meta property="twitter:card" content="summary"/>
+<meta property="twitter:title" content="ISSS608 Project Weblog: Analysis of crimes in London - EDA using Spatial clustering, hotspot clustering and trend analysis"/>
+<meta property="twitter:description" content="The analysis is part of the bigger Shiny-based Visual Analytics Application (Shiny-VAA) project for the course ISSS608- Visual Analytics offered in SMU MITB. This analysis will focus in details on 2 components of the project, namely Exploratory Data Analysis (EDA) and spatial clustering."/>
+
+<!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+<script type="text/json" id="radix-rmarkdown-metadata">
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Analysis of crimes in London - EDA using Spatial clustering, hotspot clustering and trend analysis"]},{"type":"character","attributes":{},"value":["The analysis is part of the bigger Shiny-based Visual Analytics Application (Shiny-VAA) project for the course ISSS608- Visual Analytics offered in SMU MITB. This analysis will focus in details on 2 components of the project, namely Exploratory Data Analysis (EDA) and spatial clustering."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Tan Huiyong"]},{"type":"character","attributes":{},"value":["https://sg.linkedin.com/in/tan-huiyong-72a1224b"]}]}]},{"type":"character","attributes":{},"value":["2021-04-12"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","highlight"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["tango"]}]}]}]}
+</script>
+<!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["Data/housing-density-borough.csv","Data/London-wards-2014/London-wards-2014-Mapinfo/London_Ward.dat","Data/London-wards-2014/London-wards-2014-Mapinfo/London_Ward.id","Data/London-wards-2014/London-wards-2014-Mapinfo/London_Ward.ind","Data/London-wards-2014/London-wards-2014-Mapinfo/London_Ward.map","Data/London-wards-2014/London-wards-2014-Mapinfo/London_Ward.tab","Data/London-wards-2014/London-wards-2014-Mapinfo/London_Ward_CityMerged.dat","Data/London-wards-2014/London-wards-2014-Mapinfo/London_Ward_CityMerged.id","Data/London-wards-2014/London-wards-2014-Mapinfo/London_Ward_CityMerged.ind","Data/London-wards-2014/London-wards-2014-Mapinfo/London_Ward_CityMerged.map","Data/London-wards-2014/London-wards-2014-Mapinfo/London_Ward_CityMerged.tab","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward.BOROUGH.atx","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward.cpg","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward.dbf","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward.GSS_CODE.atx","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward.LB_GSS_CD.atx","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward.prj","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward.sbn","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward.sbx","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward.shp","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward.shp.xml","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward.shx","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward_CityMerged.BOROUGH.atx","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward_CityMerged.cpg","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward_CityMerged.dbf","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward_CityMerged.GSS_CODE.atx","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward_CityMerged.LB_GSS_CD.atx","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward_CityMerged.prj","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward_CityMerged.sbn","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward_CityMerged.sbx","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward_CityMerged.shp","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward_CityMerged.shp.xml","Data/London-wards-2014/London-wards-2014_ESRI/London_Ward_CityMerged.shx","Data/London-wards-2018_ESRI/London_Borough_Excluding_MHW.dbf","Data/London-wards-2018_ESRI/London_Borough_Excluding_MHW.GSS_CODE.atx","Data/London-wards-2018_ESRI/London_Borough_Excluding_MHW.NAME.atx","Data/London-wards-2018_ESRI/London_Borough_Excluding_MHW.prj","Data/London-wards-2018_ESRI/London_Borough_Excluding_MHW.sbn","Data/London-wards-2018_ESRI/London_Borough_Excluding_MHW.sbx","Data/London-wards-2018_ESRI/London_Borough_Excluding_MHW.shp","Data/London-wards-2018_ESRI/London_Borough_Excluding_MHW.shp.xml","Data/London-wards-2018_ESRI/London_Borough_Excluding_MHW.shx","Data/London-wards-2018_ESRI/London_Ward.cpg","Data/London-wards-2018_ESRI/London_Ward.dbf","Data/London-wards-2018_ESRI/London_Ward.GSS_CODE.atx","Data/London-wards-2018_ESRI/London_Ward.prj","Data/London-wards-2018_ESRI/London_Ward.shp","Data/London-wards-2018_ESRI/London_Ward.shx","Data/London-wards-2018_ESRI/London_Ward_CityMerged.BOROUGH.atx","Data/London-wards-2018_ESRI/London_Ward_CityMerged.cpg","Data/London-wards-2018_ESRI/London_Ward_CityMerged.dbf","Data/London-wards-2018_ESRI/London_Ward_CityMerged.GSS_CODE.atx","Data/London-wards-2018_ESRI/London_Ward_CityMerged.LB_GSS_CD.atx","Data/London-wards-2018_ESRI/London_Ward_CityMerged.prj","Data/London-wards-2018_ESRI/London_Ward_CityMerged.sbn","Data/London-wards-2018_ESRI/London_Ward_CityMerged.sbx","Data/London-wards-2018_ESRI/London_Ward_CityMerged.shp","Data/London-wards-2018_ESRI/London_Ward_CityMerged.shp.CSD-3-E6-2.10692.11168.sr.lock","Data/London-wards-2018_ESRI/London_Ward_CityMerged.shp.xml","Data/London-wards-2018_ESRI/London_Ward_CityMerged.shx","Data/London-wards-2018_ESRI/LSOA_2004_London_Low_Resolution.dbf","Data/London-wards-2018_ESRI/LSOA_2004_London_Low_Resolution.prj","Data/London-wards-2018_ESRI/LSOA_2004_London_Low_Resolution.shp","Data/London-wards-2018_ESRI/LSOA_2004_London_Low_Resolution.shx","Data/London-wards-2018_ESRI/LSOA_2011_London_gen_MHW.dbf","Data/London-wards-2018_ESRI/LSOA_2011_London_gen_MHW.prj","Data/London-wards-2018_ESRI/LSOA_2011_London_gen_MHW.sbn","Data/London-wards-2018_ESRI/LSOA_2011_London_gen_MHW.sbx","Data/London-wards-2018_ESRI/LSOA_2011_London_gen_MHW.shp","Data/London-wards-2018_ESRI/LSOA_2011_London_gen_MHW.shp.xml","Data/London-wards-2018_ESRI/LSOA_2011_London_gen_MHW.shx","Data/London-wards-2018_ESRI/MSOA_2004_London_High_Resolution.dbf","Data/London-wards-2018_ESRI/MSOA_2004_London_High_Resolution.prj","Data/London-wards-2018_ESRI/MSOA_2004_London_High_Resolution.sbn","Data/London-wards-2018_ESRI/MSOA_2004_London_High_Resolution.sbx","Data/London-wards-2018_ESRI/MSOA_2004_London_High_Resolution.shp","Data/London-wards-2018_ESRI/MSOA_2004_London_High_Resolution.shp.xml","Data/London-wards-2018_ESRI/MSOA_2004_London_High_Resolution.shx","Data/London-wards-2018_ESRI/MSOA_2011_London_gen_MHW.dbf","Data/London-wards-2018_ESRI/MSOA_2011_London_gen_MHW.prj","Data/London-wards-2018_ESRI/MSOA_2011_London_gen_MHW.sbn","Data/London-wards-2018_ESRI/MSOA_2011_London_gen_MHW.sbx","Data/London-wards-2018_ESRI/MSOA_2011_London_gen_MHW.shp","Data/London-wards-2018_ESRI/MSOA_2011_London_gen_MHW.shp.xml","Data/London-wards-2018_ESRI/MSOA_2011_London_gen_MHW.shx","Data/London-wards-2018_ESRI/OA_2011_London_gen_MHW.dbf","Data/London-wards-2018_ESRI/OA_2011_London_gen_MHW.prj","Data/London-wards-2018_ESRI/OA_2011_London_gen_MHW.sbn","Data/London-wards-2018_ESRI/OA_2011_London_gen_MHW.sbx","Data/London-wards-2018_ESRI/OA_2011_London_gen_MHW.shp","Data/London-wards-2018_ESRI/OA_2011_London_gen_MHW.shp.xml","Data/London-wards-2018_ESRI/OA_2011_London_gen_MHW.shx","Data/MPS Ward Level Crime (most recent 24 months).csv","Data/MPS_Borough_Level_Crime_Historic.csv","Data/MPS_Ward_Level_Crime_Historic_NewWard.csv","Data/statistical-gis-boundaries-london/ESRI/London_Borough_Excluding_MHW.dbf","Data/statistical-gis-boundaries-london/ESRI/London_Borough_Excluding_MHW.GSS_CODE.atx","Data/statistical-gis-boundaries-london/ESRI/London_Borough_Excluding_MHW.NAME.atx","Data/statistical-gis-boundaries-london/ESRI/London_Borough_Excluding_MHW.prj","Data/statistical-gis-boundaries-london/ESRI/London_Borough_Excluding_MHW.sbn","Data/statistical-gis-boundaries-london/ESRI/London_Borough_Excluding_MHW.sbx","Data/statistical-gis-boundaries-london/ESRI/London_Borough_Excluding_MHW.shp","Data/statistical-gis-boundaries-london/ESRI/London_Borough_Excluding_MHW.shp.xml","Data/statistical-gis-boundaries-london/ESRI/London_Borough_Excluding_MHW.shx","Data/statistical-gis-boundaries-london/ESRI/London_Ward.BOROUGH.atx","Data/statistical-gis-boundaries-london/ESRI/London_Ward.cpg","Data/statistical-gis-boundaries-london/ESRI/London_Ward.dbf","Data/statistical-gis-boundaries-london/ESRI/London_Ward.GSS_CODE.atx","Data/statistical-gis-boundaries-london/ESRI/London_Ward.LB_GSS_CD.atx","Data/statistical-gis-boundaries-london/ESRI/London_Ward.prj","Data/statistical-gis-boundaries-london/ESRI/London_Ward.sbn","Data/statistical-gis-boundaries-london/ESRI/London_Ward.sbx","Data/statistical-gis-boundaries-london/ESRI/London_Ward.shp","Data/statistical-gis-boundaries-london/ESRI/London_Ward.shp.xml","Data/statistical-gis-boundaries-london/ESRI/London_Ward.shx","Data/statistical-gis-boundaries-london/ESRI/London_Ward_CityMerged.BOROUGH.atx","Data/statistical-gis-boundaries-london/ESRI/London_Ward_CityMerged.cpg","Data/statistical-gis-boundaries-london/ESRI/London_Ward_CityMerged.dbf","Data/statistical-gis-boundaries-london/ESRI/London_Ward_CityMerged.GSS_CODE.atx","Data/statistical-gis-boundaries-london/ESRI/London_Ward_CityMerged.LB_GSS_CD.atx","Data/statistical-gis-boundaries-london/ESRI/London_Ward_CityMerged.prj","Data/statistical-gis-boundaries-london/ESRI/London_Ward_CityMerged.sbn","Data/statistical-gis-boundaries-london/ESRI/London_Ward_CityMerged.sbx","Data/statistical-gis-boundaries-london/ESRI/London_Ward_CityMerged.shp","Data/statistical-gis-boundaries-london/ESRI/London_Ward_CityMerged.shp.xml","Data/statistical-gis-boundaries-london/ESRI/London_Ward_CityMerged.shx","Data/statistical-gis-boundaries-london/ESRI/LSOA_2004_London_Low_Resolution.dbf","Data/statistical-gis-boundaries-london/ESRI/LSOA_2004_London_Low_Resolution.prj","Data/statistical-gis-boundaries-london/ESRI/LSOA_2004_London_Low_Resolution.shp","Data/statistical-gis-boundaries-london/ESRI/LSOA_2004_London_Low_Resolution.shx","Data/statistical-gis-boundaries-london/ESRI/LSOA_2011_London_gen_MHW.dbf","Data/statistical-gis-boundaries-london/ESRI/LSOA_2011_London_gen_MHW.prj","Data/statistical-gis-boundaries-london/ESRI/LSOA_2011_London_gen_MHW.sbn","Data/statistical-gis-boundaries-london/ESRI/LSOA_2011_London_gen_MHW.sbx","Data/statistical-gis-boundaries-london/ESRI/LSOA_2011_London_gen_MHW.shp","Data/statistical-gis-boundaries-london/ESRI/LSOA_2011_London_gen_MHW.shp.xml","Data/statistical-gis-boundaries-london/ESRI/LSOA_2011_London_gen_MHW.shx","Data/statistical-gis-boundaries-london/ESRI/MSOA_2004_London_High_Resolution.dbf","Data/statistical-gis-boundaries-london/ESRI/MSOA_2004_London_High_Resolution.prj","Data/statistical-gis-boundaries-london/ESRI/MSOA_2004_London_High_Resolution.sbn","Data/statistical-gis-boundaries-london/ESRI/MSOA_2004_London_High_Resolution.sbx","Data/statistical-gis-boundaries-london/ESRI/MSOA_2004_London_High_Resolution.shp","Data/statistical-gis-boundaries-london/ESRI/MSOA_2004_London_High_Resolution.shp.xml","Data/statistical-gis-boundaries-london/ESRI/MSOA_2004_London_High_Resolution.shx","Data/statistical-gis-boundaries-london/ESRI/MSOA_2011_London_gen_MHW.dbf","Data/statistical-gis-boundaries-london/ESRI/MSOA_2011_London_gen_MHW.prj","Data/statistical-gis-boundaries-london/ESRI/MSOA_2011_London_gen_MHW.sbn","Data/statistical-gis-boundaries-london/ESRI/MSOA_2011_London_gen_MHW.sbx","Data/statistical-gis-boundaries-london/ESRI/MSOA_2011_London_gen_MHW.shp","Data/statistical-gis-boundaries-london/ESRI/MSOA_2011_London_gen_MHW.shp.xml","Data/statistical-gis-boundaries-london/ESRI/MSOA_2011_London_gen_MHW.shx","Data/statistical-gis-boundaries-london/ESRI/OA_2011_London_gen_MHW.dbf","Data/statistical-gis-boundaries-london/ESRI/OA_2011_London_gen_MHW.prj","Data/statistical-gis-boundaries-london/ESRI/OA_2011_London_gen_MHW.sbn","Data/statistical-gis-boundaries-london/ESRI/OA_2011_London_gen_MHW.sbx","Data/statistical-gis-boundaries-london/ESRI/OA_2011_London_gen_MHW.shp","Data/statistical-gis-boundaries-london/ESRI/OA_2011_London_gen_MHW.shp.xml","Data/statistical-gis-boundaries-london/ESRI/OA_2011_London_gen_MHW.shx","Data/statistical-gis-boundaries-london/Geography-licensing.pdf","Data/statistical-gis-boundaries-london/MapInfo/London_Borough_Excluding_MHW.dat","Data/statistical-gis-boundaries-london/MapInfo/London_Borough_Excluding_MHW.id","Data/statistical-gis-boundaries-london/MapInfo/London_Borough_Excluding_MHW.ind","Data/statistical-gis-boundaries-london/MapInfo/London_Borough_Excluding_MHW.map","Data/statistical-gis-boundaries-london/MapInfo/London_Borough_Excluding_MHW.tab","Data/statistical-gis-boundaries-london/MapInfo/London_Ward_CityMerged.dat","Data/statistical-gis-boundaries-london/MapInfo/London_Ward_CityMerged.id","Data/statistical-gis-boundaries-london/MapInfo/London_Ward_CityMerged.ind","Data/statistical-gis-boundaries-london/MapInfo/London_Ward_CityMerged.map","Data/statistical-gis-boundaries-london/MapInfo/London_Ward_CityMerged.tab","Data/statistical-gis-boundaries-london/MapInfo/LSOA_2004_London_Low_Resolution.DAT","Data/statistical-gis-boundaries-london/MapInfo/LSOA_2004_London_Low_Resolution.ID","Data/statistical-gis-boundaries-london/MapInfo/LSOA_2004_London_Low_Resolution.IND","Data/statistical-gis-boundaries-london/MapInfo/LSOA_2004_London_Low_Resolution.MAP","Data/statistical-gis-boundaries-london/MapInfo/LSOA_2004_London_Low_Resolution.TAB","Data/statistical-gis-boundaries-london/MapInfo/LSOA_2011_London_gen_MHW.DAT","Data/statistical-gis-boundaries-london/MapInfo/LSOA_2011_London_gen_MHW.ID","Data/statistical-gis-boundaries-london/MapInfo/LSOA_2011_London_gen_MHW.MAP","Data/statistical-gis-boundaries-london/MapInfo/LSOA_2011_London_gen_MHW.tab","Data/statistical-gis-boundaries-london/MapInfo/MSOA_2004_London_Low_Resolution.DAT","Data/statistical-gis-boundaries-london/MapInfo/MSOA_2004_London_Low_Resolution.ID","Data/statistical-gis-boundaries-london/MapInfo/MSOA_2004_London_Low_Resolution.MAP","Data/statistical-gis-boundaries-london/MapInfo/MSOA_2004_London_Low_Resolution.TAB","Data/statistical-gis-boundaries-london/MapInfo/MSOA_2011_London_gen_MHW.DAT","Data/statistical-gis-boundaries-london/MapInfo/MSOA_2011_London_gen_MHW.ID","Data/statistical-gis-boundaries-london/MapInfo/MSOA_2011_London_gen_MHW.MAP","Data/statistical-gis-boundaries-london/MapInfo/MSOA_2011_London_gen_MHW.tab","Data/statistical-gis-boundaries-london/MapInfo/OA_2011_London_gen_MHW.DAT","Data/statistical-gis-boundaries-london/MapInfo/OA_2011_London_gen_MHW.ID","Data/statistical-gis-boundaries-london/MapInfo/OA_2011_London_gen_MHW.MAP","Data/statistical-gis-boundaries-london/MapInfo/OA_2011_London_gen_MHW.tab","Huiyong_assignment_files/anchor-4.2.2/anchor.min.js","Huiyong_assignment_files/bowser-1.9.3/bowser.min.js","Huiyong_assignment_files/distill-2.2.21/template.v2.js","Huiyong_assignment_files/figure-html5/unnamed-chunk-11-1.png","Huiyong_assignment_files/figure-html5/unnamed-chunk-12-1.png","Huiyong_assignment_files/figure-html5/unnamed-chunk-13-1.png","Huiyong_assignment_files/figure-html5/unnamed-chunk-15-1.png","Huiyong_assignment_files/figure-html5/unnamed-chunk-18-1.png","Huiyong_assignment_files/figure-html5/unnamed-chunk-19-1.png","Huiyong_assignment_files/figure-html5/unnamed-chunk-21-1.png","Huiyong_assignment_files/figure-html5/unnamed-chunk-23-1.png","Huiyong_assignment_files/figure-html5/unnamed-chunk-26-1.png","Huiyong_assignment_files/figure-html5/unnamed-chunk-29-1.png","Huiyong_assignment_files/figure-html5/unnamed-chunk-31-1.png","Huiyong_assignment_files/figure-html5/unnamed-chunk-33-1.png","Huiyong_assignment_files/figure-html5/unnamed-chunk-35-1.png","Huiyong_assignment_files/figure-html5/unnamed-chunk-37-1.png","Huiyong_assignment_files/figure-html5/unnamed-chunk-38-1.png","Huiyong_assignment_files/figure-html5/unnamed-chunk-40-1.png","Huiyong_assignment_files/figure-html5/unnamed-chunk-41-1.png","Huiyong_assignment_files/figure-html5/unnamed-chunk-46-1.png","Huiyong_assignment_files/figure-html5/unnamed-chunk-48-1.png","Huiyong_assignment_files/figure-html5/unnamed-chunk-49-1.png","Huiyong_assignment_files/figure-html5/unnamed-chunk-49-2.png","Huiyong_assignment_files/header-attrs-2.6/header-attrs.js","Huiyong_assignment_files/jquery-1.11.3/jquery.min.js","Huiyong_assignment_files/pagedtable-1.1/css/pagedtable.css","Huiyong_assignment_files/pagedtable-1.1/js/pagedtable.js","Huiyong_assignment_files/webcomponents-2.0.0/webcomponents.js","Images/analysis_fc.webp","Images/density_map.jpg","Images/dotmap.jpg","Images/moran_lisa.webp","Images/story.jpg","Images/story2.jpg","Project_assignment.html","Project_assignment_files/anchor-4.2.2/anchor.min.js","Project_assignment_files/bowser-1.9.3/bowser.min.js","Project_assignment_files/distill-2.2.21/template.v2.js","Project_assignment_files/figure-html5/unnamed-chunk-11-1.png","Project_assignment_files/figure-html5/unnamed-chunk-12-1.png","Project_assignment_files/figure-html5/unnamed-chunk-13-1.png","Project_assignment_files/figure-html5/unnamed-chunk-15-1.png","Project_assignment_files/figure-html5/unnamed-chunk-18-1.png","Project_assignment_files/figure-html5/unnamed-chunk-19-1.png","Project_assignment_files/figure-html5/unnamed-chunk-21-1.png","Project_assignment_files/figure-html5/unnamed-chunk-23-1.png","Project_assignment_files/figure-html5/unnamed-chunk-26-1.png","Project_assignment_files/figure-html5/unnamed-chunk-29-1.png","Project_assignment_files/figure-html5/unnamed-chunk-30-1.png","Project_assignment_files/figure-html5/unnamed-chunk-31-1.png","Project_assignment_files/figure-html5/unnamed-chunk-31-2.png","Project_assignment_files/figure-html5/unnamed-chunk-32-1.png","Project_assignment_files/figure-html5/unnamed-chunk-33-1.png","Project_assignment_files/figure-html5/unnamed-chunk-34-1.png","Project_assignment_files/figure-html5/unnamed-chunk-35-1.png","Project_assignment_files/figure-html5/unnamed-chunk-36-1.png","Project_assignment_files/figure-html5/unnamed-chunk-37-1.png","Project_assignment_files/figure-html5/unnamed-chunk-38-1.png","Project_assignment_files/figure-html5/unnamed-chunk-39-1.png","Project_assignment_files/figure-html5/unnamed-chunk-40-1.png","Project_assignment_files/figure-html5/unnamed-chunk-41-1.png","Project_assignment_files/figure-html5/unnamed-chunk-42-1.png","Project_assignment_files/figure-html5/unnamed-chunk-43-1.png","Project_assignment_files/figure-html5/unnamed-chunk-45-1.png","Project_assignment_files/figure-html5/unnamed-chunk-46-1.png","Project_assignment_files/figure-html5/unnamed-chunk-47-1.png","Project_assignment_files/figure-html5/unnamed-chunk-48-1.png","Project_assignment_files/figure-html5/unnamed-chunk-48-2.png","Project_assignment_files/figure-html5/unnamed-chunk-48-3.png","Project_assignment_files/figure-html5/unnamed-chunk-49-1.png","Project_assignment_files/figure-html5/unnamed-chunk-49-2.png","Project_assignment_files/figure-html5/unnamed-chunk-50-1.png","Project_assignment_files/figure-html5/unnamed-chunk-51-1.png","Project_assignment_files/figure-html5/unnamed-chunk-52-1.png","Project_assignment_files/header-attrs-2.6/header-attrs.js","Project_assignment_files/htmlwidgets-1.5.1/htmlwidgets.js","Project_assignment_files/jquery-1.11.3/jquery.min.js","Project_assignment_files/jquery-1.12.4/jquery.min.js","Project_assignment_files/leaflet-1.3.1/images/layers-2x.png","Project_assignment_files/leaflet-1.3.1/images/layers.png","Project_assignment_files/leaflet-1.3.1/images/marker-icon-2x.png","Project_assignment_files/leaflet-1.3.1/images/marker-icon.png","Project_assignment_files/leaflet-1.3.1/images/marker-shadow.png","Project_assignment_files/leaflet-1.3.1/leaflet.css","Project_assignment_files/leaflet-1.3.1/leaflet.js","Project_assignment_files/leaflet-binding-2.0.3/leaflet.js","Project_assignment_files/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js","Project_assignment_files/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js","Project_assignment_files/Leaflet.Sync-0.0.5/bower.json","Project_assignment_files/Leaflet.Sync-0.0.5/L.Map.Sync.js","Project_assignment_files/Leaflet.Sync-0.0.5/LICENSE","Project_assignment_files/leafletfix-1.0.0/leafletfix.css","Project_assignment_files/pagedtable-1.1/css/pagedtable.css","Project_assignment_files/pagedtable-1.1/js/pagedtable.js","Project_assignment_files/Proj4Leaflet-1.0.1/proj4-compressed.js","Project_assignment_files/Proj4Leaflet-1.0.1/proj4leaflet.js","Project_assignment_files/rstudio_leaflet-1.3.1/images/1px.png","Project_assignment_files/rstudio_leaflet-1.3.1/rstudio_leaflet.css","Project_assignment_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+<meta name="distill:offset" content="../.."/>
+
+<script type="application/javascript">
+
+  window.headroom_prevent_pin = false;
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // initialize headroom for banner
+    var header = $('header').get(0);
+    var headerHeight = header.offsetHeight;
+    var headroom = new Headroom(header, {
+      tolerance: 5,
+      onPin : function() {
+        if (window.headroom_prevent_pin) {
+          window.headroom_prevent_pin = false;
+          headroom.unpin();
+        }
+      }
+    });
+    headroom.init();
+    if(window.location.hash)
+      headroom.unpin();
+    $(header).addClass('headroom--transition');
+
+    // offset scroll location for banner on hash change
+    // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+    window.addEventListener("hashchange", function(event) {
+      window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+    });
+
+    // responsive menu
+    $('.distill-site-header').each(function(i, val) {
+      var topnav = $(this);
+      var toggle = topnav.find('.nav-toggle');
+      toggle.on('click', function() {
+        topnav.toggleClass('responsive');
+      });
+    });
+
+    // nav dropdowns
+    $('.nav-dropbtn').click(function(e) {
+      $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+      $(this).parent().siblings('.nav-dropdown')
+         .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $("body").click(function(e){
+      $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $(".nav-dropdown").click(function(e){
+      e.stopPropagation();
+    });
+  });
+</script>
+
+<style type="text/css">
+
+/* Theme (user-documented overrideables for nav appearance) */
+
+.distill-site-nav {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #0F2E3D;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.distill-site-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.distill-site-nav a:hover {
+  color: white;
+}
+
+@media print {
+  .distill-site-nav {
+    display: none;
+  }
+}
+
+.distill-site-header {
+
+}
+
+.distill-site-footer {
+
+}
+
+
+/* Site Header */
+
+.distill-site-header {
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.distill-site-header .nav-left {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header .nav-left {
+    margin-left: 0;
+  }
+}
+
+
+.distill-site-header .nav-right {
+  float: right;
+  margin-right: 8px;
+}
+
+.distill-site-header a,
+.distill-site-header .title {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 10px 14px 10px;
+}
+
+.distill-site-header .title {
+  font-size: 18px;
+  min-width: 150px;
+}
+
+.distill-site-header .logo {
+  padding: 0;
+}
+
+.distill-site-header .logo img {
+  display: none;
+  max-height: 20px;
+  width: auto;
+  margin-bottom: -4px;
+}
+
+.distill-site-header .nav-image img {
+  max-height: 18px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: -3px;
+}
+
+
+
+@media screen and (min-width: 1000px) {
+  .distill-site-header .logo img {
+    display: inline-block;
+  }
+  .distill-site-header .nav-left {
+    margin-left: 20px;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 20px;
+  }
+  .distill-site-header .title {
+    padding-left: 12px;
+  }
+}
+
+
+.distill-site-header .nav-toggle {
+  display: none;
+}
+
+.nav-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-dropdown .nav-dropbtn {
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px 10px;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  margin-top: 1px;
+  z-index: 2;
+}
+
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+  margin-top: 2px;
+  white-space: nowrap;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.nav-dropdown-content hr {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-dropdown-active {
+  display: block;
+}
+
+.nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+  color: black;
+  padding: 6px 24px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.nav-dropdown-content .nav-dropdown-header {
+  display: block;
+  padding: 5px 24px;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #999999;
+  white-space: nowrap;
+}
+
+.nav-dropdown:hover .nav-dropbtn {
+  color: white;
+}
+
+.nav-dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav-right .nav-dropdown-content {
+  margin-left: -45%;
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+  .distill-site-header a.nav-toggle {
+    float: right;
+    display: block;
+  }
+  .distill-site-header .title {
+    margin-left: 0;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 0;
+  }
+  .distill-site-header {
+    overflow: hidden;
+  }
+  .nav-right .nav-dropdown-content {
+    margin-left: 0;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-header.responsive {position: relative; min-height: 500px; }
+  .distill-site-header.responsive a.nav-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .distill-site-header.responsive a,
+  .distill-site-header.responsive .nav-dropdown {
+    display: block;
+    text-align: left;
+  }
+  .distill-site-header.responsive .nav-left,
+  .distill-site-header.responsive .nav-right {
+    width: 100%;
+  }
+  .distill-site-header.responsive .nav-dropdown {float: none;}
+  .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+  .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Site Footer */
+
+.distill-site-footer {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 3;
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+/* Headroom */
+
+d-title {
+  padding-top: 6rem;
+}
+
+@media print {
+  d-title {
+    padding-top: 4rem;
+  }
+}
+
+.headroom {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.headroom--transition {
+  transition: all .4s ease-in-out;
+}
+
+.headroom--unpinned {
+  top: -100px;
+}
+
+.headroom--pinned {
+  top: 0;
+}
+
+</style>
+
+<link href="../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+<script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
+<script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
+<script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
+
+<script type="application/javascript">
+
+function getMeta(metaName) {
+  var metas = document.getElementsByTagName('meta');
+  for (let i = 0; i < metas.length; i++) {
+    if (metas[i].getAttribute('name') === metaName) {
+      return metas[i].getAttribute('content');
+    }
+  }
+  return '';
+}
+
+function offsetURL(url) {
+  var offset = getMeta('distill:offset');
+  return offset ? offset + '/' + url : url;
+}
+
+function createFuseIndex() {
+
+  // create fuse index
+  var options = {
+    keys: [
+      { name: 'title', weight: 20 },
+      { name: 'categories', weight: 15 },
+      { name: 'description', weight: 10 },
+      { name: 'contents', weight: 5 },
+    ],
+    ignoreLocation: true,
+    threshold: 0
+  };
+  var fuse = new window.Fuse([], options);
+
+  // fetch the main search.json
+  return fetch(offsetURL('search.json'))
+    .then(function(response) {
+      if (response.status == 200) {
+        return response.json().then(function(json) {
+          // index main articles
+          json.articles.forEach(function(article) {
+            fuse.add(article);
+          });
+          // download collections and index their articles
+          return Promise.all(json.collections.map(function(collection) {
+            return fetch(offsetURL(collection)).then(function(response) {
+              if (response.status === 200) {
+                return response.json().then(function(articles) {
+                  articles.forEach(function(article) {
+                    fuse.add(article);
+                  });
+                })
+              } else {
+                return Promise.reject(
+                  new Error('Unexpected status from search index request: ' +
+                            response.status)
+                );
+              }
+            });
+          })).then(function() {
+            return fuse;
+          });
+        });
+
+      } else {
+        return Promise.reject(
+          new Error('Unexpected status from search index request: ' +
+                      response.status)
+        );
+      }
+    });
+}
+
+window.document.addEventListener("DOMContentLoaded", function (event) {
+
+  // get search element (bail if we don't have one)
+  var searchEl = window.document.getElementById('distill-search');
+  if (!searchEl)
+    return;
+
+  createFuseIndex()
+    .then(function(fuse) {
+
+      // make search box visible
+      searchEl.classList.remove('hidden');
+
+      // initialize autocomplete
+      var options = {
+        autoselect: true,
+        hint: false,
+        minLength: 2,
+      };
+      window.autocomplete(searchEl, options, [{
+        source: function(query, callback) {
+          const searchOptions = {
+            isCaseSensitive: false,
+            shouldSort: true,
+            minMatchCharLength: 2,
+            limit: 10,
+          };
+          var results = fuse.search(query, searchOptions);
+          callback(results
+            .map(function(result) { return result.item; })
+            .filter(function(item) { return !!item.description; })
+          );
+        },
+        templates: {
+          suggestion: function(suggestion) {
+            var html = `
+              <div class="search-item">
+                <h3>${suggestion.title}</h3>
+                <div class="search-item-description">
+                  ${suggestion.description}
+                </div>
+                <div class="search-item-preview">
+                  <img src="${suggestion.preview ? offsetURL(suggestion.preview) : ''}"</img>
+                </div>
+              </div>
+            `;
+            return html;
+          }
+        }
+      }]).on('autocomplete:selected', function(event, suggestion) {
+        window.location.href = offsetURL(suggestion.path);
+      });
+      // remove inline display style on autocompleter (we want to
+      // manage responsive display via css)
+      $('.algolia-autocomplete').css("display", "");
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+
+});
+
+</script>
+
+<style type="text/css">
+
+/* Algolioa Autocomplete */
+
+.algolia-autocomplete {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: sub;
+  background-color: white;
+  color: black;
+  padding: 6px;
+  padding-top: 8px;
+  padding-bottom: 0;
+  border-radius: 6px;
+  border: 1px #0F2E3D solid;
+  width: 180px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-nav .algolia-autocomplete {
+    display: none;
+    visibility: hidden;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete {
+    display: inline-block;
+    visibility: visible;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
+    margin-left: 0;
+    width: 400px;
+    max-height: 400px;
+  }
+}
+
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+  width: 90%;
+  outline: none;
+  border: none;
+}
+
+.algolia-autocomplete .aa-hint {
+  color: #999;
+}
+.algolia-autocomplete .aa-dropdown-menu {
+  width: 550px;
+  max-height: 70vh;
+  overflow-x: visible;
+  overflow-y: scroll;
+  padding: 5px;
+  margin-top: 3px;
+  margin-left: -150px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #999;
+  border-top: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+  cursor: pointer;
+  padding: 5px 4px;
+  border-bottom: 1px solid #eee;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
+  border-bottom: none;
+  margin-bottom: 2px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
+  overflow: hidden;
+  font-size: 0.8em;
+  line-height: 1.4em;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
+  margin-block-start: 0;
+  margin-block-end: 5px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
+  display: inline-block;
+  overflow: hidden;
+  height: 2.8em;
+  width: 80%;
+  margin-right: 4%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
+  display: inline-block;
+  width: 15%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
+  height: 3em;
+  width: auto;
+  display: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
+  display: initial;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+  background-color: #eee;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+</style>
+
+
+<!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+<style type="text/css">
+
+body {
+  background-color: white;
+}
+
+.pandoc-table {
+  width: 100%;
+}
+
+.pandoc-table>caption {
+  margin-bottom: 10px;
+}
+
+.pandoc-table th:not([align]) {
+  text-align: left;
+}
+
+.pagedtable-footer {
+  font-size: 15px;
+}
+
+d-byline .byline {
+  grid-template-columns: 2fr 2fr;
+}
+
+d-byline .byline h3 {
+  margin-block-start: 1.5em;
+}
+
+d-byline .byline .authors-affiliations h3 {
+  margin-block-start: 0.5em;
+}
+
+.authors-affiliations .orcid-id {
+  width: 16px;
+  height:16px;
+  margin-left: 4px;
+  margin-right: 4px;
+  vertical-align: middle;
+  padding-bottom: 2px;
+}
+
+d-title .dt-tags {
+  margin-top: 1em;
+  grid-column: text;
+}
+
+.dt-tags .dt-tag {
+  text-decoration: none;
+  display: inline-block;
+  color: rgba(0,0,0,0.6);
+  padding: 0em 0.4em;
+  margin-right: 0.5em;
+  margin-bottom: 0.4em;
+  font-size: 70%;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+d-article table.gt_table td,
+d-article table.gt_table th {
+  border-bottom: none;
+}
+
+.html-widget {
+  margin-bottom: 2.0em;
+}
+
+.l-screen-inset {
+  padding-right: 16px;
+}
+
+.l-screen .caption {
+  margin-left: 10px;
+}
+
+.shaded {
+  background: rgb(247, 247, 247);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .html-widget {
+  margin-bottom: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .shaded-content {
+  background: white;
+}
+
+.text-output {
+  margin-top: 0;
+  line-height: 1.5em;
+}
+
+.hidden {
+  display: none !important;
+}
+
+d-article {
+  padding-top: 2.5rem;
+  padding-bottom: 30px;
+}
+
+d-appendix {
+  padding-top: 30px;
+}
+
+d-article>p>img {
+  width: 100%;
+}
+
+d-article h2 {
+  margin: 1rem 0 1.5rem 0;
+}
+
+d-article h3 {
+  margin-top: 1.5rem;
+}
+
+d-article iframe {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 2.0em;
+  width: 100%;
+}
+
+/* Tweak code blocks */
+
+d-article div.sourceCode code,
+d-article pre code {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: auto;
+}
+
+d-article div.sourceCode {
+  background-color: white;
+}
+
+d-article div.sourceCode pre {
+  padding-left: 10px;
+  font-size: 12px;
+  border-left: 2px solid rgba(0,0,0,0.1);
+}
+
+d-article pre {
+  font-size: 12px;
+  color: black;
+  background: none;
+  margin-top: 0;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+d-article pre a {
+  border-bottom: none;
+}
+
+d-article pre a:hover {
+  border-bottom: none;
+  text-decoration: underline;
+}
+
+@media(min-width: 768px) {
+
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: visible !important;
+}
+
+d-article div.sourceCode pre {
+  padding-left: 18px;
+  font-size: 14px;
+}
+
+d-article pre {
+  font-size: 14px;
+}
+
+}
+
+figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* CSS for d-contents */
+
+.d-contents {
+  grid-column: text;
+  color: rgba(0,0,0,0.8);
+  font-size: 0.9em;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+  padding-left: 0.25em;
+  justify-self: start;
+}
+
+@media(min-width: 1000px) {
+  .d-contents.d-contents-float {
+    height: 0;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    justify-self: center;
+    padding-right: 3em;
+    padding-left: 2em;
+  }
+}
+
+.d-contents nav h3 {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.d-contents li {
+  list-style-type: none
+}
+
+.d-contents nav > ul {
+  padding-left: 0;
+}
+
+.d-contents ul {
+  padding-left: 1em
+}
+
+.d-contents nav ul li {
+  margin-top: 0.6em;
+  margin-bottom: 0.2em;
+}
+
+.d-contents nav a {
+  font-size: 13px;
+  border-bottom: none;
+  text-decoration: none
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.d-contents nav a:hover {
+  text-decoration: underline solid rgba(0, 0, 0, 0.6)
+}
+
+.d-contents nav > ul > li > a {
+  font-weight: 600;
+}
+
+.d-contents nav > ul > li > ul {
+  font-weight: inherit;
+}
+
+.d-contents nav > ul > li > ul > li {
+  margin-top: 0.2em;
+}
+
+
+.d-contents nav ul {
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+
+.d-article-with-toc h2:nth-child(2) {
+  margin-top: 0;
+}
+
+
+/* Figure */
+
+.figure {
+  position: relative;
+  margin-bottom: 2.5em;
+  margin-top: 1.5em;
+}
+
+.figure img {
+  width: 100%;
+}
+
+.figure .caption {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+.figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+.figure .caption a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.figure .caption b,
+.figure .caption strong, {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 1.0);
+}
+
+/* Citations */
+
+d-article .citation {
+  color: inherit;
+  cursor: inherit;
+}
+
+div.hanging-indent{
+  margin-left: 1em; text-indent: -1em;
+}
+
+
+/* Tweak 1000px media break to show more text */
+
+@media(min-width: 1000px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 16px;
+  }
+
+  .grid {
+    grid-column-gap: 16px;
+  }
+
+  d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+  }
+  figure .caption, .figure .caption, figure figcaption {
+    font-size: 13px;
+  }
+}
+
+@media(min-width: 1180px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 32px;
+  }
+
+  .grid {
+    grid-column-gap: 32px;
+  }
+}
+
+
+/* Get the citation styles for the appendix (not auto-injected on render since
+   we do our own rendering of the citation appendix) */
+
+d-appendix .citation-appendix,
+.d-appendix .citation-appendix {
+  font-size: 11px;
+  line-height: 15px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 18px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.02);
+  padding: 10px 18px;
+  border-radius: 3px;
+  color: rgba(150, 150, 150, 1);
+  overflow: hidden;
+  margin-top: -12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Include appendix styles here so they can be overridden */
+
+d-appendix {
+  contain: layout style;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-top: 60px;
+  margin-bottom: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0,0,0,0.5);
+  padding-top: 60px;
+  padding-bottom: 48px;
+}
+
+d-appendix h3 {
+  grid-column: page-start / text-start;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 1em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.65);
+}
+
+d-appendix h3 + * {
+  margin-top: 1em;
+}
+
+d-appendix ol {
+  padding: 0 0 0 15px;
+}
+
+@media (min-width: 768px) {
+  d-appendix ol {
+    padding: 0 0 0 30px;
+    margin-left: -30px;
+  }
+}
+
+d-appendix li {
+  margin-bottom: 1em;
+}
+
+d-appendix a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+d-appendix > * {
+  grid-column: text;
+}
+
+d-appendix > d-footnote-list,
+d-appendix > d-citation-list,
+d-appendix > distill-appendix {
+  grid-column: screen;
+}
+
+/* Include footnote styles here so they can be overridden */
+
+d-footnote-list {
+  contain: layout style;
+}
+
+d-footnote-list > * {
+  grid-column: text;
+}
+
+d-footnote-list a.footnote-backlink {
+  color: rgba(0,0,0,0.3);
+  padding-left: 0.5em;
+}
+
+
+
+/* Anchor.js */
+
+.anchorjs-link {
+  /*transition: all .25s linear; */
+  text-decoration: none;
+  border-bottom: none;
+}
+*:hover > .anchorjs-link {
+  margin-left: -1.125em !important;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+/* Social footer */
+
+.social_footer {
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.67);
+}
+
+.disqus-comments {
+  margin-right: 30px;
+}
+
+.disqus-comment-count {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+#disqus_thread {
+  margin-top: 30px;
+}
+
+.article-sharing a {
+  border-bottom: none;
+  margin-right: 8px;
+}
+
+.article-sharing a:hover {
+  border-bottom: none;
+}
+
+.sidebar-section.subscribe {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.subscribe p {
+  margin-bottom: 0.5em;
+}
+
+
+.article-footer .subscribe {
+  font-size: 15px;
+  margin-top: 45px;
+}
+
+
+.sidebar-section.custom {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.custom p {
+  margin-bottom: 0.5em;
+}
+
+/* Styles for listing layout (hide title) */
+.layout-listing d-title, .layout-listing .d-title {
+  display: none;
+}
+
+/* Styles for posts lists (not auto-injected) */
+
+
+.posts-with-sidebar {
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+.posts-list .description h2,
+.posts-list .description p {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.posts-list .description h2 {
+  font-weight: 700;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.posts-list h2.post-tag {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 12px;
+}
+.posts-list {
+  margin-top: 60px;
+  margin-bottom: 24px;
+}
+
+.posts-list .post-preview {
+  text-decoration: none;
+  overflow: hidden;
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 24px 0;
+}
+
+.post-preview-last {
+  border-bottom: none !important;
+}
+
+.posts-list .posts-list-caption {
+  grid-column: screen;
+  font-weight: 400;
+}
+
+.posts-list .post-preview h2 {
+  margin: 0 0 6px 0;
+  line-height: 1.2em;
+  font-style: normal;
+  font-size: 24px;
+}
+
+.posts-list .post-preview p {
+  margin: 0 0 12px 0;
+  line-height: 1.4em;
+  font-size: 16px;
+}
+
+.posts-list .post-preview .thumbnail {
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  position: relative;
+  max-width: 500px;
+}
+.posts-list .post-preview img {
+  width: 100%;
+  display: block;
+}
+
+.posts-list .metadata {
+  font-size: 12px;
+  line-height: 1.4em;
+  margin-bottom: 18px;
+}
+
+.posts-list .metadata > * {
+  display: inline-block;
+}
+
+.posts-list .metadata .publishedDate {
+  margin-right: 2em;
+}
+
+.posts-list .metadata .dt-authors {
+  display: block;
+  margin-top: 0.3em;
+  margin-right: 2em;
+}
+
+.posts-list .dt-tags {
+  display: block;
+  line-height: 1em;
+}
+
+.posts-list .dt-tags .dt-tag {
+  display: inline-block;
+  color: rgba(0,0,0,0.6);
+  padding: 0.3em 0.4em;
+  margin-right: 0.2em;
+  margin-bottom: 0.4em;
+  font-size: 60%;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.posts-list img {
+  opacity: 1;
+}
+
+.posts-list img[data-src] {
+  opacity: 0;
+}
+
+.posts-more {
+  clear: both;
+}
+
+
+.posts-sidebar {
+  font-size: 16px;
+}
+
+.posts-sidebar h3 {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.sidebar-section {
+  margin-bottom: 30px;
+}
+
+.categories ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.categories li {
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 0;
+}
+
+.categories li>a {
+  border-bottom: none;
+}
+
+.categories li>a:hover {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.categories .active {
+  font-weight: 600;
+}
+
+.categories .category-count {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+
+@media(min-width: 768px) {
+  .posts-list .post-preview h2 {
+    font-size: 26px;
+  }
+  .posts-list .post-preview .thumbnail {
+    float: right;
+    width: 30%;
+    margin-bottom: 0;
+  }
+  .posts-list .post-preview .description {
+    float: left;
+    width: 45%;
+  }
+  .posts-list .post-preview .metadata {
+    float: left;
+    width: 20%;
+    margin-top: 8px;
+  }
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.5em;
+    font-size: 16px;
+  }
+  .posts-with-sidebar .posts-list {
+    float: left;
+    width: 75%;
+  }
+  .posts-with-sidebar .posts-sidebar {
+    float: right;
+    width: 20%;
+    margin-top: 60px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}
+
+
+/* Improve display for browsers without grid (IE/Edge <= 15) */
+
+.downlevel {
+  line-height: 1.6em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+}
+
+.downlevel .d-title {
+  padding-top: 6rem;
+  padding-bottom: 1.5rem;
+}
+
+.downlevel .d-title h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+}
+
+.downlevel .d-title p {
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.55em;
+  margin-top: 0;
+}
+
+.downlevel .d-byline {
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  font-size: 0.8rem;
+  line-height: 1.8em;
+}
+
+.downlevel .section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.downlevel .d-article {
+  font-size: 1.06rem;
+  line-height: 1.7em;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+
+.downlevel .d-appendix {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.5);
+  padding-top: 40px;
+  padding-bottom: 48px;
+}
+
+.downlevel .footnotes ol {
+  padding-left: 13px;
+}
+
+.downlevel .base-grid,
+.downlevel .distill-header,
+.downlevel .d-title,
+.downlevel .d-abstract,
+.downlevel .d-article,
+.downlevel .d-appendix,
+.downlevel .distill-appendix,
+.downlevel .d-byline,
+.downlevel .d-footnote-list,
+.downlevel .d-citation-list,
+.downlevel .distill-footer,
+.downlevel .appendix-bottom,
+.downlevel .posts-container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media(min-width: 768px) {
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+  padding-left: 150px;
+  padding-right: 150px;
+  max-width: 900px;
+}
+}
+
+.downlevel pre code {
+  display: block;
+  border-left: 2px solid rgba(0, 0, 0, .1);
+  padding: 0 0 0 20px;
+  font-size: 14px;
+}
+
+.downlevel code, .downlevel pre {
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+.downlevel .posts-list .post-preview {
+  color: inherit;
+}
+
+
+
+</style>
+
+<script type="application/javascript">
+
+function is_downlevel_browser() {
+  if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                 window.navigator.userAgent)) {
+    return true;
+  } else {
+    return window.load_distill_framework === undefined;
+  }
+}
+
+// show body when load is complete
+function on_load_complete() {
+
+  // add anchors
+  if (window.anchors) {
+    window.anchors.options.placement = 'left';
+    window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+  }
+
+
+  // set body to visible
+  document.body.style.visibility = 'visible';
+
+  // force redraw for leaflet widgets
+  if (window.HTMLWidgets) {
+    var maps = window.HTMLWidgets.findAll(".leaflet");
+    $.each(maps, function(i, el) {
+      var map = this.getMap();
+      map.invalidateSize();
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.TileLayer)
+          layer.redraw();
+      });
+    });
+  }
+
+  // trigger 'shown' so htmlwidgets resize
+  $('d-article').trigger('shown');
+}
+
+function init_distill() {
+
+  init_common();
+
+  // create front matter
+  var front_matter = $('<d-front-matter></d-front-matter>');
+  $('#distill-front-matter').wrap(front_matter);
+
+  // create d-title
+  $('.d-title').changeElementType('d-title');
+
+  // create d-byline
+  var byline = $('<d-byline></d-byline>');
+  $('.d-byline').replaceWith(byline);
+
+  // create d-article
+  var article = $('<d-article></d-article>');
+  $('.d-article').wrap(article).children().unwrap();
+
+  // move posts container into article
+  $('.posts-container').appendTo($('d-article'));
+
+  // create d-appendix
+  $('.d-appendix').changeElementType('d-appendix');
+
+  // flag indicating that we have appendix items
+  var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+  // replace footnotes with <d-footnote>
+  $('.footnote-ref').each(function(i, val) {
+    appendix = true;
+    var href = $(this).attr('href');
+    var id = href.replace('#', '');
+    var fn = $('#' + id);
+    var fn_p = $('#' + id + '>p');
+    fn_p.find('.footnote-back').remove();
+    var text = fn_p.html();
+    var dtfn = $('<d-footnote></d-footnote>');
+    dtfn.html(text);
+    $(this).replaceWith(dtfn);
+  });
+  // remove footnotes
+  $('.footnotes').remove();
+
+  // move refs into #references-listing
+  $('#references-listing').replaceWith($('#refs'));
+
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    var id = $(this).attr('id');
+    $('.d-contents a[href="#' + id + '"]').parent().remove();
+    appendix = true;
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+  });
+
+  // show d-appendix if we have appendix content
+  $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+  // localize layout chunks to just output
+  $('.layout-chunk').each(function(i, val) {
+
+    // capture layout
+    var layout = $(this).attr('data-layout');
+
+    // apply layout to markdown level block elements
+    var elements = $(this).children().not('div.sourceCode, pre, script');
+    elements.each(function(i, el) {
+      var layout_div = $('<div class="' + layout + '"></div>');
+      if (layout_div.hasClass('shaded')) {
+        var shaded_content = $('<div class="shaded-content"></div>');
+        $(this).wrap(shaded_content);
+        $(this).parent().wrap(layout_div);
+      } else {
+        $(this).wrap(layout_div);
+      }
+    });
+
+
+    // unwrap the layout-chunk div
+    $(this).children().unwrap();
+  });
+
+  // remove code block used to force  highlighting css
+  $('.distill-force-highlighting-css').parent().remove();
+
+  // remove empty line numbers inserted by pandoc when using a
+  // custom syntax highlighting theme
+  $('code.sourceCode a:empty').remove();
+
+  // load distill framework
+  load_distill_framework();
+
+  // wait for window.distillRunlevel == 4 to do post processing
+  function distill_post_process() {
+
+    if (!window.distillRunlevel || window.distillRunlevel < 4)
+      return;
+
+    // hide author/affiliations entirely if we have no authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+    if (!have_authors)
+      $('d-byline').addClass('hidden');
+
+    // article with toc class
+    $('.d-contents').parent().addClass('d-article-with-toc');
+
+    // strip links that point to #
+    $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+    // add orcid ids
+    $('.authors-affiliations').find('.author').each(function(i, el) {
+      var orcid_id = front_matter.authors[i].orcidID;
+      if (orcid_id) {
+        var a = $('<a></a>');
+        a.attr('href', 'https://orcid.org/' + orcid_id);
+        var img = $('<img></img>');
+        img.addClass('orcid-id');
+        img.attr('alt', 'ORCID ID');
+        img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+        a.append(img);
+        $(this).append(a);
+      }
+    });
+
+    // hide elements of author/affiliations grid that have no value
+    function hide_byline_column(caption) {
+      $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+    }
+
+    // affiliations
+    var have_affiliations = false;
+    for (var i = 0; i<front_matter.authors.length; ++i) {
+      var author = front_matter.authors[i];
+      if (author.affiliation !== "&nbsp;") {
+        have_affiliations = true;
+        break;
+      }
+    }
+    if (!have_affiliations)
+      $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+    // published date
+    if (!front_matter.publishedDate)
+      hide_byline_column("Published");
+
+    // document object identifier
+    var doi = $('d-byline').find('h3:contains("DOI")');
+    var doi_p = doi.next().empty();
+    if (!front_matter.doi) {
+      // if we have a citation and valid citationText then link to that
+      if ($('#citation').length > 0 && front_matter.citationText) {
+        doi.html('Citation');
+        $('<a href="#citation"></a>')
+          .text(front_matter.citationText)
+          .appendTo(doi_p);
+      } else {
+        hide_byline_column("DOI");
+      }
+    } else {
+      $('<a></a>')
+         .attr('href', "https://doi.org/" + front_matter.doi)
+         .html(front_matter.doi)
+         .appendTo(doi_p);
+    }
+
+     // change plural form of authors/affiliations
+    if (front_matter.authors.length === 1) {
+      var grid = $('.authors-affiliations');
+      grid.children('h3:contains("Authors")').text('Author');
+      grid.children('h3:contains("Affiliations")').text('Affiliation');
+    }
+
+    // remove d-appendix and d-footnote-list local styles
+    $('d-appendix > style:first-child').remove();
+    $('d-footnote-list > style:first-child').remove();
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // clear polling timer
+    clearInterval(tid);
+
+    // show body now that everything is ready
+    on_load_complete();
+  }
+
+  var tid = setInterval(distill_post_process, 50);
+  distill_post_process();
+
+}
+
+function init_downlevel() {
+
+  init_common();
+
+   // insert hr after d-title
+  $('.d-title').after($('<hr class="section-separator"/>'));
+
+  // check if we have authors
+  var front_matter = JSON.parse($("#distill-front-matter").html());
+  var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+  // manage byline/border
+  if (!have_authors)
+    $('.d-byline').remove();
+  $('.d-byline').after($('<hr class="section-separator"/>'));
+  $('.d-byline a').remove();
+
+  // remove toc
+  $('.d-contents').remove();
+
+  // move appendix elements
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+  });
+
+
+  // inject headers into references and footnotes
+  var refs_header = $('<h3></h3>');
+  refs_header.text('References');
+  $('#refs').prepend(refs_header);
+
+  var footnotes_header = $('<h3></h3');
+  footnotes_header.text('Footnotes');
+  $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+  // move appendix-bottom entries to the bottom
+  $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+  $('.appendix-bottom').remove();
+
+  // remove appendix if it's empty
+  if ($('.d-appendix').children().length === 0)
+    $('.d-appendix').remove();
+
+  // prepend separator above appendix
+  $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+  // trim code
+  $('pre>code').each(function(i, val) {
+    $(this).html($.trim($(this).html()));
+  });
+
+  // move posts-container right before article
+  $('.posts-container').insertBefore($('.d-article'));
+
+  $('body').addClass('downlevel');
+
+  on_load_complete();
+}
+
+
+function init_common() {
+
+  // jquery plugin to change element types
+  (function($) {
+    $.fn.changeElementType = function(newType) {
+      var attrs = {};
+
+      $.each(this[0].attributes, function(idx, attr) {
+        attrs[attr.nodeName] = attr.nodeValue;
+      });
+
+      this.replaceWith(function() {
+        return $("<" + newType + "/>", attrs).append($(this).contents());
+      });
+    };
+  })(jQuery);
+
+  // prevent underline for linked images
+  $('a > img').parent().css({'border-bottom' : 'none'});
+
+  // mark non-body figures created by knitr chunks as 100% width
+  $('.layout-chunk').each(function(i, val) {
+    var figures = $(this).find('img, .html-widget');
+    if ($(this).attr('data-layout') !== "l-body") {
+      figures.css('width', '100%');
+    } else {
+      figures.css('max-width', '100%');
+      figures.filter("[width]").each(function(i, val) {
+        var fig = $(this);
+        fig.css('width', fig.attr('width') + 'px');
+      });
+
+    }
+  });
+
+  // auto-append index.html to post-preview links in file: protocol
+  // and in rstudio ide preview
+  $('.post-preview').each(function(i, val) {
+    if (window.location.protocol === "file:")
+      $(this).attr('href', $(this).attr('href') + "index.html");
+  });
+
+  // get rid of index.html references in header
+  if (window.location.protocol !== "file:") {
+    $('.distill-site-header a[href]').each(function(i,val) {
+      $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+    });
+  }
+
+  // add class to pandoc style tables
+  $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+  $('.kable-table').children('table').addClass('pandoc-table');
+
+  // add figcaption style to table captions
+  $('caption').parent('table').addClass("figcaption");
+
+  // initialize posts list
+  if (window.init_posts_list)
+    window.init_posts_list();
+
+  // implmement disqus comment link
+  $('.disqus-comment-count').click(function() {
+    window.headroom_prevent_pin = true;
+    $('#disqus_thread').toggleClass('hidden');
+    if (!$('#disqus_thread').hasClass('hidden')) {
+      var offset = $(this).offset();
+      $(window).resize();
+      $('html, body').animate({
+        scrollTop: offset.top - 35
+      });
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (is_downlevel_browser())
+    init_downlevel();
+  else
+    window.addEventListener('WebComponentsReady', init_distill);
+});
+
+</script>
+
+<!--/radix_placeholder_distill-->
+  <script src="../../site_libs/header-attrs-2.6/header-attrs.js"></script>
+  <link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+  <script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
+  <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+<!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Analysis of crimes in London - EDA using Spatial clustering, hotspot clustering and trend analysis","description":"The analysis is part of the bigger Shiny-based Visual Analytics Application (Shiny-VAA) project for the course ISSS608- Visual Analytics offered in SMU MITB. This analysis will focus in details on 2 components of the project, namely Exploratory Data Analysis (EDA) and spatial clustering.","authors":[{"author":"Tan Huiyong","authorURL":"https://sg.linkedin.com/in/tan-huiyong-72a1224b","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-04-12T00:00:00.000+08:00","citationText":"Huiyong, 2021"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a href="../../index.html" class="title">ISSS608 Project Weblog</a>
+<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
+</div>
+<div class="nav-right">
+<a href="../../index.html">Home</a>
+<a href="../../about.html">About</a>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Individual Assignment
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<span class="nav-dropdown-header">EDA</span>
+<a href="../../Project_assignment.html"></a>
+</div>
+</div>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Project Pages
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="../../Proposal.html">Proposal</a>
+<a href="../../poster.html">Poster</a>
+<a href="../../application.html">Application</a>
+<a href="../../paper.html">Research Paper</a>
+<hr/>
+<a href="../../application_user_guide.html">Application User Guide</a>
+</div>
+</div>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Analysis of crimes in London - EDA using Spatial clustering, hotspot clustering and trend analysis</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+<p><p>The analysis is part of the bigger Shiny-based Visual Analytics Application (Shiny-VAA) project for the course ISSS608- Visual Analytics offered in SMU MITB. This analysis will focus in details on 2 components of the project, namely Exploratory Data Analysis (EDA) and spatial clustering.</p></p>
+</div>
+
+<div class="d-byline">
+  Tan Huiyong <a href="https://sg.linkedin.com/in/tan-huiyong-72a1224b" class="uri">https://sg.linkedin.com/in/tan-huiyong-72a1224b</a> 
+  
+<br/>2021-04-12
+</div>
+
+<div class="d-article">
+<style>
+img {
+    max-width: none;
+
+    /* other options:
+    max-width: 1200px;
+    */
+}
+</style>
+<h2 id="objective">Objective</h2>
+<p>There is a growing emphasis on crime analysis by law enforcement agencies over the past decades. Crime analysis is defined as the systematic study of crime and disorder problems as well as other police-related issues—including socio-demographic, spatial, and temporal factors—to assist the police in criminal apprehension, crime and disorder reduction, crime prevention, and evaluation (<a href="https://www.sagepub.com/sites/default/files/upm-binaries/46973_CH_1.pdf">Santos, 2016)</a>.</p>
+<p>A literature review will be conducted to understand the how analysis of crime data was done before. Thereafter,This article will analyse historical crimes in Greater London, UK, particularly using the hot-spots and spatial clustering methods to give insights on the crime in the metropolitan.</p>
+<p>The analysis will be presented in the form of visualization and they will be part of the Shiny-App dashboard in the future.</p>
+<h2 id="storyboard">1. Storyboard</h2>
+<p>The storyboard will depict the EDA module of the ShinyApp and it would consists of filter panel, geo-spatial visualization and time series of crimes.</p>
+<figure>
+<img src="Images/story2.jpg" style="width:100.0%" alt="Storyboard" /><figcaption aria-hidden="true">Storyboard</figcaption>
+</figure>
+<p>It is important to show visualize the EDA in geo-spatial format as the data touches on crimes within a city and it would be difficult to view the difference in crimes across the city if a crosstab was used to display it.</p>
+<p>The time series line plot would allow one to observe any trends over time.</p>
+<p>A filter panel is essential to maximise interactivity. However, this will be explored during the coding of the ShinyApp.</p>
+<h2 id="literature-review">2. Literature review</h2>
+<p>There are different methods in displaying geo-spatial data. Based on studies by <a href="https://www.jstatsoft.org/article/view/v084i06/v84i06.pdf">Tennekes, M.</a>, tmap R package provides a wide range of plotting methods for users. If the exact locations of each crime is known, they could be plotted as a dot map.</p>
+<figure>
+<img src="Images/dotmap.jpg" style="width:90.0%" alt="Dot map of crimes in Greater London, (Tennekes, M., 2018)" /><figcaption aria-hidden="true">Dot map of crimes in Greater London, (Tennekes, M., 2018)</figcaption>
+</figure>
+<p>Tennekes had demonstrated that the <strong>smooth_map</strong> function with the package could visualize crime density by area in a smoothed density contoured lines and spatial polygons that represent areas with uniform density value,</p>
+<figure>
+<img src="Images/density_map.jpg" style="width:90.0%" alt="Kernel density map of crimes in Greater London, (Tennekes, M., 2018)" /><figcaption aria-hidden="true">Kernel density map of crimes in Greater London, (Tennekes, M., 2018)</figcaption>
+</figure>
+<p>While the Kernel density map for the crime is able to show area with high density of crimes per area, it does not partake any spatial autocorrection analysis to visualize spatial pattern or hotspot detection. <a href="https://ij-healthgeographics.biomedcentral.com/articles/10.1186/1476-072X-8-36">Chaikaew, Tripathi &amp; Souris</a> had written an article on “Exploring spatial patterns and hotspots of diarrhea in Chiang Mai, Thailand” and they had applied an drew up an flowchart to depict how they devise their analysis.</p>
+<figure>
+<img src="Images/analysis_fc.webp" style="width:80.0%" alt="Flowchart of analysing spatial patterns and hotspots, (Chaikaew, Tripathi &amp; Souris., 2009)" /><figcaption aria-hidden="true">Flowchart of analysing spatial patterns and hotspots, (Chaikaew, Tripathi &amp; Souris., 2009)</figcaption>
+</figure>
+<p>They have utilized local Moran statistics and locations by type of association (LISA cluster map) to indicate spatial clusters. On the other hand, they had calculated local spatial correlation indices to display the hotspots. Nonetheless, a multiplicative measure of overall spatial association of values which fall within a given distance of each other, such as Getis and Ord’s G-Statistics could be explored to depict distance based clustering.</p>
+<figure>
+<img src="Images/moran_lisa.webp" style="width:100.0%" alt="Moran scatter plot matrix and LISA cluster map of DMBR for p &lt; 0.01, (Chaikaew, Tripathi &amp; Souris., 2009)" /><figcaption aria-hidden="true">Moran scatter plot matrix and LISA cluster map of DMBR for p &lt; 0.01, (Chaikaew, Tripathi &amp; Souris., 2009)</figcaption>
+</figure>
+<p><strong><em>Literature Source</em></strong></p>
+<p><em>Nakarin Chaikaew, Nitin K Tripathi &amp; Marc Souris, Exploring spatial patterns and hotspots of diarrhea in Chiang Mai, Thailand, International Journal of Health Geographics, 24 June 2009</em></p>
+<p><em>Tennekes, M., tmap: Thematic Maps in R, for Journal of Statistical Software, April 2018, Volume 84, Issue 6.</em></p>
+<h2 id="step-by-step-data-preparation">3. Step-by-step Data Preparation</h2>
+<h3 id="installing-and-launching-relevant-r-packages">3.1 Installing and launching relevant R packages</h3>
+<h3 id="datasource">3.2 Datasource</h3>
+<p>The datasets used in this analysis are taken from London Datastore, which is a data repository created by Greater London Authority (GLA). The datasets for the analysis are as follows:</p>
+<ol type="1">
+<li>Recorded Crime: Geographic Breakdown</li>
+</ol>
+<ul>
+<li>Historic crimes from Mar 2010 till Dec 2018</li>
+<li>Recent 24 months crimes</li>
+</ul>
+<ol start="2" type="1">
+<li>Statistical GIS Boundary Files for London</li>
+</ol>
+<ul>
+<li>Wards level - Ward is the primary unit of English electoral geography</li>
+<li>Borough level - Boroughs are local authority districts that make up the ceremonial county of Greater London, with each Borough divided into different wards.</li>
+</ul>
+<ol start="3" type="1">
+<li>Population and housing density of Greater London at Borough level</li>
+</ol>
+<h3 id="importing-of-crime-dataset-into-r">3.3 Importing of crime dataset into R</h3>
+<p>The dataset are in CSV format, hence <strong>read_csv()</strong> function of <strong><em>readr</em></strong> package was used to import the data for both past 24 months and historical ones.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>crime_his</span> <span class='op'>=</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>'data/MPS_Ward_Level_Crime_Historic_NewWard.csv'</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Parsed with column specification:
+cols(
+  .default = col_double(),
+  WardCode = col_character(),
+  `Ward Name` = col_character(),
+  Borough = col_character(),
+  `Major Category` = col_character(),
+  `Minor Category` = col_character()
+)</code></pre>
+<pre><code>See spec(...) for full column specifications.</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>crime_24mths</span> <span class='op'>=</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>'data/MPS Ward Level Crime (most recent 24 months).csv'</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Parsed with column specification:
+cols(
+  .default = col_double(),
+  MajorText = col_character(),
+  MinorText = col_character(),
+  WardName = col_character(),
+  WardCode = col_character(),
+  LookUp_BoroughName = col_character()
+)
+See spec(...) for full column specifications.</code></pre>
+</div>
+<h3 id="understanding-the-crime-data">3.4 Understanding the crime data</h3>
+<p>The structure of the data was examined.</p>
+<h3 id="unpivoting-crime-dataset">3.5 Unpivoting crime dataset</h3>
+<p>It was observed that the data sets were presented in pivoted format whereby the month year of when the crime had took place are presented as individual columns. <strong>pivot_longer()</strong> function of <strong><em>tidyverse</em></strong> was used to “unpivot” the data. A new column “Month_Year” is created to account for the month of the crimes and this column is converted into date using <strong>as.Date()</strong> function. Other columns are renamed for easier reference and to be consistent between the 2 datasets.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>crime_his_tab</span> <span class='op'>=</span> <span class='va'>crime_his</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>pivot_longer</span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>`Major Category`</span>,
+                  <span class='va'>`Minor Category`</span>,
+                  <span class='va'>`Ward Name`</span>,
+                  <span class='va'>WardCode</span>,
+                  <span class='va'>Borough</span><span class='op'>)</span>,
+                  names_to <span class='op'>=</span> <span class='st'>'Month_Year'</span>, values_to <span class='op'>=</span> <span class='st'>'Count'</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+          <span class='fu'>rename</span><span class='op'>(</span>`WardName` <span class='op'>=</span> <span class='va'>`Ward Name`</span>, 
+         `Crime_Sub_Category` <span class='op'>=</span> <span class='va'>`Minor Category`</span>,
+         `Crime_Category` <span class='op'>=</span> <span class='va'>`Major Category`</span>,
+         `BoroughName` <span class='op'>=</span> <span class='va'>`Borough`</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>Month_Year<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>Month_Year</span>,<span class='st'>'01'</span><span class='op'>)</span>, format<span class='op'>=</span><span class='st'>"%Y%m%d"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>crime_24mths_tab</span> <span class='op'>=</span> <span class='va'>crime_24mths</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>pivot_longer</span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>MajorText</span>,
+                  <span class='va'>MinorText</span>,
+                  <span class='va'>WardName</span>,
+                  <span class='va'>WardCode</span>,
+                  <span class='va'>LookUp_BoroughName</span><span class='op'>)</span>,
+                  names_to <span class='op'>=</span> <span class='st'>'Month_Year'</span>, values_to <span class='op'>=</span> <span class='st'>'Count'</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+          <span class='fu'>rename</span><span class='op'>(</span>`Crime_Sub_Category` <span class='op'>=</span> <span class='va'>`MinorText`</span>,
+         `Crime_Category` <span class='op'>=</span> <span class='va'>`MajorText`</span>,
+         `BoroughName` <span class='op'>=</span> <span class='va'>`LookUp_BoroughName`</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>Month_Year<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>Month_Year</span>,<span class='st'>'01'</span><span class='op'>)</span>, format<span class='op'>=</span><span class='st'>"%Y%m%d"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>crime_his_tab</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Observations: 2,113,230
+Variables: 7
+$ WardCode           &lt;chr&gt; &quot;E05000026&quot;, &quot;E05000026&quot;, &quot;E05000026&quot;,...
+$ WardName           &lt;chr&gt; &quot;Abbey&quot;, &quot;Abbey&quot;, &quot;Abbey&quot;, &quot;Abbey&quot;, &quot;A...
+$ BoroughName        &lt;chr&gt; &quot;Barking and Dagenham&quot;, &quot;Barking and D...
+$ Crime_Category     &lt;chr&gt; &quot;Burglary&quot;, &quot;Burglary&quot;, &quot;Burglary&quot;, &quot;B...
+$ Crime_Sub_Category &lt;chr&gt; &quot;Burglary In A Dwelling&quot;, &quot;Burglary In...
+$ Month_Year         &lt;date&gt; 2010-04-01, 2010-05-01, 2010-06-01, 2...
+$ Count              &lt;dbl&gt; 9, 4, 6, 6, 12, 5, 3, 11, 8, 8, 7, 4, ...</code></pre>
+<div class="sourceCode">
+<pre><code><span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>crime_24mths_tab</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Observations: 537,840
+Variables: 7
+$ Crime_Category     &lt;chr&gt; &quot;Arson and Criminal Damage&quot;, &quot;Arson an...
+$ Crime_Sub_Category &lt;chr&gt; &quot;Arson&quot;, &quot;Arson&quot;, &quot;Arson&quot;, &quot;Arson&quot;, &quot;A...
+$ WardName           &lt;chr&gt; &quot;Abbey&quot;, &quot;Abbey&quot;, &quot;Abbey&quot;, &quot;Abbey&quot;, &quot;A...
+$ WardCode           &lt;chr&gt; &quot;E05000026&quot;, &quot;E05000026&quot;, &quot;E05000026&quot;,...
+$ BoroughName        &lt;chr&gt; &quot;Barking and Dagenham&quot;, &quot;Barking and D...
+$ Month_Year         &lt;date&gt; 2019-01-01, 2019-02-01, 2019-03-01, 2...
+$ Count              &lt;dbl&gt; 1, 0, 1, 0, 1, 0, 0, 0, 0, 2, 2, 0, 0,...</code></pre>
+</div>
+<h3 id="comparison-of-datasets">3.6 Comparison of datasets</h3>
+<p>The unique values of Borough and Ward-Code are studied between the historical and past 24 months crime datasets.It was observed that the names of borough was identical, but not for Ward level, there are 90 wards with different ward codes.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>crime_his_tab</span><span class='op'>$</span><span class='va'>BoroughName</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>==</span> <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>crime_24mths_tab</span><span class='op'>$</span><span class='va'>BoroughName</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+[14] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+[27] TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>compare</span> <span class='op'>=</span> <span class='fu'>tibble</span><span class='op'>(</span>binary <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>crime_24mths_tab</span><span class='op'>$</span><span class='va'>WardCode</span><span class='op'>)</span><span class='op'>)</span> 
+                 <span class='op'>%in%</span>  <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>crime_his_tab</span><span class='op'>$</span><span class='va'>WardCode</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>compare</span>,<span class='va'>binary</span> <span class='op'>==</span><span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 90</code></pre>
+</div>
+<p>Further comparison was made between the historical and past 24 months crime datasets on the crime categories and it revealed that the crime categorization are and this may complicate study if the 2 datasets were to be appended together.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>compare_crime</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>Hist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>crime_his_tab</span><span class='op'>$</span><span class='va'>Crime_Category</span><span class='op'>)</span><span class='op'>)</span>,
+     Mths24 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>crime_24mths_tab</span><span class='op'>$</span><span class='va'>Crime_Category</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'>paged_table</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>compare_crime</span>, <span class='st'>"length&lt;-"</span>, <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/lengths.html'>lengths</a></span><span class='op'>(</span><span class='va'>compare_crime</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Hist"],"name":[1],"type":["fct"],"align":["left"]},{"label":["Mths24"],"name":[2],"type":["fct"],"align":["left"]}],"data":[{"1":"Burglary","2":"Arson and Criminal Damage"},{"1":"Criminal Damage","2":"Burglary"},{"1":"Drugs","2":"Drug Offences"},{"1":"Fraud or Forgery","2":"Miscellaneous Crimes Against Society"},{"1":"Other Notifiable Offences","2":"Possession of Weapons"},{"1":"Robbery","2":"Public Order Offences"},{"1":"Sexual Offences","2":"Robbery"},{"1":"Theft and Handling","2":"Sexual Offences"},{"1":"Violence Against The Person","2":"Theft"},{"1":"NA","2":"Vehicle Offences"},{"1":"NA","2":"Violence Against the Person"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<p>It was decided that only historical crime dataset will be used due to the incompatibility and the past 24 months data includes a blackswan event (Covid-19) in year 2020.</p>
+<h3 id="further-analysis-of-data">3.7 Further analysis of data</h3>
+<p>The crime dataset was furthered studied using the <strong>summary()</strong> function and it verified that the earliest month-year was Apr 2010.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>crime_his_tab</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   WardCode           WardName         BoroughName       
+ Length:2113230     Length:2113230     Length:2113230    
+ Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character  
+                                                         
+                                                         
+                                                         
+ Crime_Category     Crime_Sub_Category   Month_Year        
+ Length:2113230     Length:2113230     Min.   :2010-04-01  
+ Class :character   Class :character   1st Qu.:2012-06-01  
+ Mode  :character   Mode  :character   Median :2014-08-01  
+                                       Mean   :2014-08-01  
+                                       3rd Qu.:2016-10-01  
+                                       Max.   :2018-12-01  
+     Count        
+ Min.   :  0.000  
+ 1st Qu.:  0.000  
+ Median :  1.000  
+ Mean   :  3.099  
+ 3rd Qu.:  4.000  
+ Max.   :851.000  </code></pre>
+</div>
+<h3 id="transforming-of-data">3.8 Transforming of data</h3>
+<p>An additional field “Year” was created to show the year of the crime and the data is filtered using <strong>filter()</strong> from <strong><em>dplyr</em></strong> package to take in only data from 2011 onward as the data from 2010 does not contain the full year data.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>crime_his_tab</span> <span class='op'>=</span> <span class='va'>crime_his_tab</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>Year <span class='op'>=</span> <span class='fu'>year</span><span class='op'>(</span><span class='va'>Month_Year</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Year</span> <span class='op'>&gt;=</span> <span class='fl'>2011</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>The data is further summarized by year and ward level</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>crime_his_tab_ward</span> <span class='op'>=</span> <span class='va'>crime_his_tab</span> <span class='op'>%&gt;%</span>
+      <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>WardName</span>,<span class='va'>WardCode</span>, <span class='va'>Year</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+      <span class='fu'>summarize</span><span class='op'>(</span>Total_count <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>Count</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+      <span class='fu'>pivot_wider</span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='va'>Year</span>,
+                  values_from <span class='op'>=</span> <span class='va'>Total_count</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>`summarise()` has grouped output by &#39;WardName&#39;, &#39;WardCode&#39;. You can override using the `.groups` argument.</code></pre>
+</div>
+<h2 id="step-by-step-visualization-and-analysis-preparation">4 Step-by-step Visualization and Analysis Preparation</h2>
+<h3 id="reading-of-map">4.1 Reading of map</h3>
+<p><em>readOGR()</em> function of <strong><em>rgdal</em></strong> package was used to read OGR vector maps into Spatial objects. <strong>st_read()</strong> is not used as we require the file to be read as sp for further analysis</p>
+<p>City of London is not present in the crime dataset, hence it will be removed from the geospatial data using <strong>subset()</strong> function to ensure consistency during subsequent analysis.</p>
+<p>A total of 630 wards was read. A quick thematic map (QTM) using <strong>qtm()</strong> function from <strong><em>tmap</em></strong> package is plotted to verify the removal of City of London, which is shown as a blank space in the middle of Greater London.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>qtm</span><span class='op'>(</span><span class='va'>london</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-11-1.png" width="624" /></p>
+</div>
+<h3 id="joining-of-geospatial-and-crime-data">4.2 Joining of geospatial and crime data</h3>
+<p>The geospatial and the crime data (aspatial) will be combined into 1 data using the <strong>left_join()</strong> function of <strong><em>dplyr</em></strong> package.The geospatial data will be used as the based data object, while the crime data will be used as the join table. The join fields are “GSS_CODE” and “WardCode” from the respective data. Ward names are not used as they are not unique and could be the same in multiple boroughs. Hence, a new field, Ward-Borough, is created to allow easier differentiation of common ward names.</p>
+<p>To simplify the study, all spatial analysis would only study crimes tht occurred in year 2018.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>london</span><span class='op'>@</span><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>london</span><span class='op'>@</span><span class='va'>data</span>,<span class='va'>crime_his_tab_ward</span>,
+                                  by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"GSS_CODE"</span> <span class='op'>=</span> <span class='st'>"WardCode"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+              <span class='fu'>mutate</span><span class='op'>(</span>Ward_Borough <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>NAME</span>,<span class='st'>"-"</span>, <span class='va'>BOROUGH</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'>qtm</span><span class='op'>(</span><span class='va'>london</span>, <span class='st'>"2018"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-12-1.png" width="624" /></p>
+</div>
+<h3 id="exploring-the-style-of-presentation">4.3 Exploring the style of presentation</h3>
+<p>A quick exploration of the maps in different thematic styles were explored using <strong>tm_shape()</strong> function from <strong><em>tmap</em></strong>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'>tmap_mode</span><span class='op'>(</span><span class='st'>"plot"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>tmap mode set to plotting</code></pre>
+<div class="sourceCode">
+<pre><code><span class='va'>map1</span> <span class='op'>=</span> <span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>london</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>tm_fill</span><span class='op'>(</span><span class='st'>"2018"</span>, style<span class='op'>=</span><span class='st'>"equal"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_borders</span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.2</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_layout</span><span class='op'>(</span>main.title <span class='op'>=</span> <span class='st'>"Equal"</span>, main.title.size <span class='op'>=</span> <span class='fl'>0.7</span> ,
+            legend.position <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"right"</span>, <span class='st'>"bottom"</span><span class='op'>)</span>, legend.title.size <span class='op'>=</span> <span class='fl'>0.8</span><span class='op'>)</span>
+
+<span class='va'>map2</span> <span class='op'>=</span> <span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>london</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>tm_fill</span><span class='op'>(</span><span class='st'>"2018"</span>,  style<span class='op'>=</span><span class='st'>"jenks"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_borders</span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.2</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_layout</span><span class='op'>(</span>main.title <span class='op'>=</span> <span class='st'>"Jenks"</span>, main.title.size <span class='op'>=</span> <span class='fl'>0.7</span> ,
+            legend.position <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"right"</span>, <span class='st'>"bottom"</span><span class='op'>)</span>, legend.title.size <span class='op'>=</span> <span class='fl'>0.8</span><span class='op'>)</span>
+
+<span class='va'>map3</span> <span class='op'>=</span> <span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>london</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>tm_fill</span><span class='op'>(</span><span class='st'>"2018"</span>, style<span class='op'>=</span><span class='st'>"quantile"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_borders</span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.2</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_layout</span><span class='op'>(</span>main.title <span class='op'>=</span> <span class='st'>"Quantile"</span>, main.title.size <span class='op'>=</span> <span class='fl'>0.7</span> ,
+            legend.position <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"right"</span>, <span class='st'>"bottom"</span><span class='op'>)</span>, legend.title.size <span class='op'>=</span> <span class='fl'>0.8</span><span class='op'>)</span>
+
+<span class='va'>map4</span> <span class='op'>=</span> <span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>london</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>tm_fill</span><span class='op'>(</span><span class='st'>"2018"</span>, style<span class='op'>=</span><span class='st'>"fisher"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_borders</span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.2</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_layout</span><span class='op'>(</span>main.title <span class='op'>=</span> <span class='st'>"Fisher"</span>, main.title.size <span class='op'>=</span> <span class='fl'>0.7</span> ,
+            legend.position <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"right"</span>, <span class='st'>"bottom"</span><span class='op'>)</span>, legend.title.size <span class='op'>=</span> <span class='fl'>0.8</span><span class='op'>)</span>
+
+<span class='fu'>tmap_arrange</span><span class='op'>(</span><span class='va'>map1</span>,<span class='va'>map2</span>,<span class='va'>map3</span>,<span class='va'>map4</span>,outer.margins <span class='op'>=</span> <span class='fl'>0</span>, ncol <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-13-1.png" width="624" /></p>
+</div>
+<p>As pointed out in the literature review, tmap offers a wide range of configuration to visualize the geospatial data in different color schema. However, it is important to display the contrast of the colours with analytical values.</p>
+<h3 id="exploration-of-local-indicators-for-spatial-association-lisa">4.4 Exploration of Local Indicators for Spatial Association (LISA)</h3>
+<p><strong>4.4.1 Creating list of neighbours</strong></p>
+<p>The list of neighbours of each Ward level polygons are identified using the <strong>poly2nb()</strong> function from <strong><em>spdep</em></strong> package. This package procides a collection of functions to create spatial weights matrix, building neighbour lists and tests for spatial ‘autocorrelation’,including global ‘Morans I’ and ‘Gearys C’</p>
+<p>A Queen contiguity matrix is first constructed. Queen would consider 2 polygons neighbours as long as a single shared boundary point meets the contiguity condition.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>wm_q</span> <span class='op'>&lt;-</span> <span class='fu'>poly2nb</span><span class='op'>(</span><span class='va'>london</span>, queen<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>wm_q</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Neighbour list object:
+Number of regions: 629 
+Number of nonzero links: 3686 
+Percentage nonzero weights: 0.9316527 
+Average number of links: 5.860095 
+Link number distribution:
+
+  1   2   3   4   5   6   7   8   9  10  11  12 
+  1   4  14  73 171 177 117  52  13   4   2   1 
+1 least connected region:
+0 with 1 link
+1 most connected region:
+134 with 12 links</code></pre>
+</div>
+<p><strong>plot()</strong> function is used to visualize the resultant mapping of neighbours from using the Queen continuity matrix</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>london</span>, border<span class='op'>=</span><span class='st'>"grey"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>wm_q</span>, <span class='fu'>coordinates</span><span class='op'>(</span><span class='va'>london</span><span class='op'>)</span>, pch <span class='op'>=</span> <span class='fl'>19</span>, cex <span class='op'>=</span> <span class='fl'>0.4</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span>, col<span class='op'>=</span> <span class='st'>"#FB7080"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-15-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<p><strong>4.4.2 Row standardized weighted matrix</strong></p>
+<p>Row standardized weighted matrix is the process of normalizing each row of the matrix and assigned weightage to address polygons that have unequal number of neighbours.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>rswm_q</span> <span class='op'>&lt;-</span> <span class='fu'>nb2listw</span><span class='op'>(</span><span class='va'>wm_q</span>, zero.policy <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>rswm_q</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Characteristics of weights list object:
+Neighbour list object:
+Number of regions: 629 
+Number of nonzero links: 3686 
+Percentage nonzero weights: 0.9316527 
+Average number of links: 5.860095 
+Link number distribution:
+
+  1   2   3   4   5   6   7   8   9  10  11  12 
+  1   4  14  73 171 177 117  52  13   4   2   1 
+1 least connected region:
+0 with 1 link
+1 most connected region:
+134 with 12 links
+
+Weights style: W 
+Weights constants summary:
+    n     nn  S0       S1       S2
+W 629 395641 629 222.8078 2562.136</code></pre>
+</div>
+<p><strong>4.4.3 local Moran’s I statistics</strong></p>
+<p><strong>localmoran()</strong> function from <strong><em>spdep</em></strong> package calculates the local spatial statistic Moran’s I for each zone based on the spatial weights.</p>
+<p>Ii: the local Moran’s I statistics E.Ii: the expectation of local Moran statistic Var.Ii: the variance of local Moran statistic Z.Ii:the standard deviate of local Moran statistic Pr(): the p-value of local Moran statistic</p>
+<p>The Moran’s I was calculated and a few samples of the result is shown.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>fips</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/order.html'>order</a></span><span class='op'>(</span><span class='va'>london</span><span class='op'>$</span><span class='va'>Ward_Borough</span><span class='op'>)</span>
+<span class='va'>localMI</span> <span class='op'>&lt;-</span> <span class='fu'>localmoran</span><span class='op'>(</span><span class='va'>london</span><span class='op'>$</span><span class='va'>`2018`</span>, <span class='va'>rswm_q</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Mapping local Moran’s I and p values values</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>london.localMI</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>london</span>,<span class='va'>localMI</span><span class='op'>)</span>
+<span class='va'>localMI.map</span> <span class='op'>&lt;-</span> <span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>london.localMI</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_fill</span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"Ii"</span>, 
+          palette <span class='op'>=</span> <span class='st'>"YlOrRd"</span>, 
+          title <span class='op'>=</span> <span class='st'>"local moran statistics"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_borders</span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>
+
+<span class='va'>pvalue.map</span> <span class='op'>&lt;-</span> <span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>london.localMI</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_fill</span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"Pr.z...0."</span>, 
+          breaks<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='cn'>Inf</span>, <span class='fl'>0.001</span>, <span class='fl'>0.01</span>, <span class='fl'>0.05</span>, <span class='fl'>0.1</span>, <span class='cn'>Inf</span><span class='op'>)</span>,
+          palette<span class='op'>=</span><span class='st'>"-Blues"</span>, 
+          title <span class='op'>=</span> <span class='st'>"local Moran's I p-values"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_borders</span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>
+
+<span class='fu'>tmap_arrange</span><span class='op'>(</span><span class='va'>localMI.map</span>, <span class='va'>pvalue.map</span>, asp<span class='op'>=</span><span class='fl'>1</span>, ncol<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-18-1.png" width="624" /></p>
+</div>
+<p><strong>4.4.4 Moran scatterplot with standardised variable</strong></p>
+<p>The Moran’s I scatterplot is plotted using standardized scale.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>london</span><span class='op'>$</span><span class='va'>Z.2018</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/scale.html'>scale</a></span><span class='op'>(</span><span class='va'>london</span><span class='op'>$</span><span class='va'>`2018`</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='va'>as.vector</span> 
+<span class='va'>nci</span> <span class='op'>&lt;-</span> <span class='fu'>moran.plot</span><span class='op'>(</span><span class='va'>london</span><span class='op'>$</span><span class='va'>Z.2018</span>, <span class='va'>rswm_q</span>, labels<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>london</span><span class='op'>$</span><span class='va'>Ward_Borough</span><span class='op'>)</span>,
+                  xlab<span class='op'>=</span><span class='st'>"z-crime 2018"</span>, ylab<span class='op'>=</span><span class='st'>"Spatially Lag z-crime 2018"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-19-1.png" width="624" /></p>
+</div>
+<p><strong>4.4.5 LISA Cluster map</strong></p>
+<p>The LISA cluster map would then created. 4 quadrants would be created based on the mean values of the crimes and the significance level is set at 5%.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>quadrant</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/vector.html'>vector</a></span><span class='op'>(</span>mode<span class='op'>=</span><span class='st'>"numeric"</span>,length<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>localMI</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>C_Mean</span> <span class='op'>&lt;-</span> <span class='va'>london</span><span class='op'>$</span><span class='st'>'2018'</span> <span class='op'>-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>london</span><span class='op'>$</span><span class='va'>`2018`</span><span class='op'>)</span>
+<span class='va'>C_mI</span> <span class='op'>&lt;-</span> <span class='va'>localMI</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>]</span> <span class='op'>-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>localMI</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span> 
+<span class='va'>signif</span> <span class='op'>&lt;-</span> <span class='fl'>0.05</span>    <span class='co'># 5% significance level</span>
+
+<span class='va'>quadrant</span><span class='op'>[</span><span class='va'>C_Mean</span> <span class='op'>&lt;</span><span class='fl'>0</span> <span class='op'>&amp;</span> <span class='va'>C_mI</span><span class='op'>&lt;</span><span class='fl'>0</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>      
+<span class='va'>quadrant</span><span class='op'>[</span><span class='va'>C_Mean</span> <span class='op'>&lt;</span><span class='fl'>0</span> <span class='op'>&amp;</span> <span class='va'>C_mI</span><span class='op'>&gt;</span><span class='fl'>0</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>2</span>
+<span class='va'>quadrant</span><span class='op'>[</span><span class='va'>C_Mean</span> <span class='op'>&gt;</span><span class='fl'>0</span> <span class='op'>&amp;</span> <span class='va'>C_mI</span><span class='op'>&lt;</span><span class='fl'>0</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>3</span>
+<span class='va'>quadrant</span><span class='op'>[</span><span class='va'>C_Mean</span> <span class='op'>&gt;</span><span class='fl'>0</span> <span class='op'>&amp;</span> <span class='va'>C_mI</span><span class='op'>&gt;</span><span class='fl'>0</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>4</span>    
+
+<span class='va'>quadrant</span><span class='op'>[</span><span class='va'>localMI</span><span class='op'>[</span>,<span class='fl'>5</span><span class='op'>]</span><span class='op'>&gt;</span><span class='va'>signif</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>0</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>london.localMI</span><span class='op'>$</span><span class='va'>quadrant</span> <span class='op'>&lt;-</span> <span class='va'>quadrant</span>
+<span class='va'>colors</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#ffffff"</span>, <span class='st'>"cornflowerblue"</span>, <span class='st'>"cyan1"</span>, <span class='st'>"chocolate1"</span>, <span class='st'>"firebrick"</span><span class='op'>)</span>
+<span class='va'>clusters</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"insignificant"</span>, <span class='st'>"low-low"</span>, <span class='st'>"low-high"</span>, <span class='st'>"high-low"</span>, <span class='st'>"high-high"</span><span class='op'>)</span>
+
+<span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>london.localMI</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_fill</span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"quadrant"</span>, style <span class='op'>=</span> <span class='st'>"cat"</span>, 
+          palette <span class='op'>=</span> <span class='va'>colors</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>quadrant</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span><span class='fl'>1</span><span class='op'>]</span>, 
+          labels <span class='op'>=</span> <span class='va'>clusters</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>quadrant</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span><span class='fl'>1</span><span class='op'>]</span>, 
+          popup.vars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Postal.Code"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_view</span><span class='op'>(</span>set.zoom.limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>11</span>,<span class='fl'>17</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_borders</span><span class='op'>(</span>alpha<span class='op'>=</span><span class='fl'>0.5</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-21-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<h3 id="hot-spot-and-cold-spot-area-analysis">4.5 Hot Spot and Cold Spot Area Analysis</h3>
+<p><strong>4.5.1 Findng neighbours</strong></p>
+<p>Statistically significant hot-spots and cold-spots could be mapped by looking at neighbours within a defined proximity. This analysis is performed using High/Low Clustering (Getis-Ord General G).</p>
+<p><strong>dnearneigh()</strong> function from <strong><em>spdep</em></strong> is used to identify neighbours of region points by Euclidean distance between lower and upper bounds. The specific distance was used to ensure all objects have at least 1 link. As the data is not in kilometres scale, longlat is turned off.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>dnb</span> <span class='op'>&lt;-</span> <span class='fu'>dnearneigh</span><span class='op'>(</span><span class='fu'>coordinates</span><span class='op'>(</span><span class='va'>london</span><span class='op'>)</span>, <span class='fl'>0</span>,<span class='fl'>2940</span>, longlat <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
+<span class='va'>dnb</span>
+</code></pre>
+</div>
+<pre><code>Neighbour list object:
+Number of regions: 629 
+Number of nonzero links: 8624 
+Percentage nonzero weights: 2.179754 
+Average number of links: 13.71065 </code></pre>
+</div>
+<p>The resultant neighbour plot is as shown below.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>london</span>, border <span class='op'>=</span> <span class='st'>'lightgrey'</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>dnb</span>, <span class='fu'>coordinates</span><span class='op'>(</span><span class='va'>london</span><span class='op'>)</span>, pch <span class='op'>=</span> <span class='fl'>19</span>, cex <span class='op'>=</span> <span class='fl'>0.4</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span>, col<span class='op'>=</span> <span class='st'>"#FB7080"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-23-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<p>A listw type spatial weights object is created using <strong>nb2listw()</strong> function from <strong><em>spdep</em></strong> and a basic binary distance weights is applied.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>dnb_lw</span> <span class='op'>&lt;-</span> <span class='fu'>nb2listw</span><span class='op'>(</span><span class='va'>dnb</span>, style <span class='op'>=</span> <span class='st'>'B'</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>dnb_lw</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Characteristics of weights list object:
+Neighbour list object:
+Number of regions: 629 
+Number of nonzero links: 8624 
+Percentage nonzero weights: 2.179754 
+Average number of links: 13.71065 
+Link number distribution:
+
+ 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 
+ 9 11 13 21 16 26 31 37 38 54 48 33 22 25 22 24 13 22 16 19 20 16 15 
+24 25 26 27 28 29 30 31 32 33 34 
+ 8 13  9 13 10  7  8  3  3  3  1 
+9 least connected regions:
+1 41 44 45 106 107 124 125 356 with 1 link
+1 most connected region:
+477 with 34 links
+
+Weights style: B 
+Weights constants summary:
+    n     nn   S0    S1     S2
+B 629 395641 8624 17248 611352</code></pre>
+</div>
+<p>Adaptive distance method can also be used to derived the proximity matrix</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>coords</span> <span class='op'>&lt;-</span> <span class='fu'>coordinates</span><span class='op'>(</span><span class='va'>london</span><span class='op'>)</span>
+<span class='va'>knb</span> <span class='op'>&lt;-</span> <span class='fu'>knn2nb</span><span class='op'>(</span><span class='fu'>knearneigh</span><span class='op'>(</span><span class='va'>coords</span>, k<span class='op'>=</span><span class='fl'>5</span>, longlat <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>, 
+              row.names<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/row.names.html'>row.names</a></span><span class='op'>(</span><span class='va'>london</span><span class='op'>$</span><span class='va'>`2018`</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>knb_lw</span> <span class='op'>&lt;-</span> <span class='fu'>nb2listw</span><span class='op'>(</span><span class='va'>knb</span>, style <span class='op'>=</span> <span class='st'>'B'</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>knb_lw</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Characteristics of weights list object:
+Neighbour list object:
+Number of regions: 629 
+Number of nonzero links: 3145 
+Percentage nonzero weights: 0.7949126 
+Average number of links: 5 
+Non-symmetric neighbours list
+Link number distribution:
+
+  5 
+629 
+629 least connected regions:
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400 401 402 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418 419 420 421 422 423 424 425 426 427 428 429 430 431 432 433 434 435 436 437 438 439 440 441 442 443 444 445 446 447 448 449 450 451 452 453 454 455 456 457 458 459 460 461 462 463 464 465 466 467 468 469 470 471 472 473 474 475 476 477 478 479 480 481 482 483 484 485 486 487 488 489 490 491 492 493 494 495 496 497 498 499 500 501 502 503 504 505 506 507 508 509 510 511 512 513 514 515 516 517 518 519 520 521 522 523 524 525 526 527 528 529 530 531 532 533 534 535 536 537 538 539 540 541 542 543 544 545 546 547 548 549 550 551 552 553 554 555 556 557 558 559 560 561 562 563 564 565 566 567 568 569 570 571 572 573 574 575 576 577 578 579 580 581 582 583 584 585 586 587 588 589 590 591 592 593 594 595 596 597 598 599 600 601 602 603 604 605 606 607 608 609 610 611 612 613 614 615 616 617 618 619 620 621 622 623 624 625 626 627 628 629 with 5 links
+629 most connected regions:
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400 401 402 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418 419 420 421 422 423 424 425 426 427 428 429 430 431 432 433 434 435 436 437 438 439 440 441 442 443 444 445 446 447 448 449 450 451 452 453 454 455 456 457 458 459 460 461 462 463 464 465 466 467 468 469 470 471 472 473 474 475 476 477 478 479 480 481 482 483 484 485 486 487 488 489 490 491 492 493 494 495 496 497 498 499 500 501 502 503 504 505 506 507 508 509 510 511 512 513 514 515 516 517 518 519 520 521 522 523 524 525 526 527 528 529 530 531 532 533 534 535 536 537 538 539 540 541 542 543 544 545 546 547 548 549 550 551 552 553 554 555 556 557 558 559 560 561 562 563 564 565 566 567 568 569 570 571 572 573 574 575 576 577 578 579 580 581 582 583 584 585 586 587 588 589 590 591 592 593 594 595 596 597 598 599 600 601 602 603 604 605 606 607 608 609 610 611 612 613 614 615 616 617 618 619 620 621 622 623 624 625 626 627 628 629 with 5 links
+
+Weights style: B 
+Weights constants summary:
+    n     nn   S0   S1    S2
+B 629 395641 3145 5773 63952</code></pre>
+</div>
+<p>The resultant plot is as follows.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>london</span>, border<span class='op'>=</span><span class='st'>"lightgrey"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>knb</span>, <span class='fu'>coordinates</span><span class='op'>(</span><span class='va'>london</span><span class='op'>)</span>, pch <span class='op'>=</span> <span class='fl'>19</span>, cex <span class='op'>=</span> <span class='fl'>0.4</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span>, col<span class='op'>=</span> <span class='st'>"#FB7080"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-26-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<p><strong>4.5.2 Mapping Gi values with fixed distance and adaptive distance weights</strong></p>
+<p>Gi values,represented as a Z-score, is calculated using both fixed and adaptive distance matrix methods. Both methods are used to compare the difference in the result. <strong>localG()</strong> function from <strong><em>spdep</em></strong> is used used to calculate the Gi values.</p>
+<p><em>Fixed distance weight</em></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>fips</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/order.html'>order</a></span><span class='op'>(</span><span class='va'>london</span><span class='op'>$</span><span class='va'>Ward_Borough</span><span class='op'>)</span>
+<span class='va'>gi.fixed</span> <span class='op'>&lt;-</span> <span class='fu'>localG</span><span class='op'>(</span><span class='va'>london</span><span class='op'>$</span><span class='va'>`2018`</span>, <span class='va'>dnb_lw</span><span class='op'>)</span>
+
+<span class='va'>london.gi_f</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>london</span>, <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='va'>gi.fixed</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>london.gi_f</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>19</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"gstat"</span>
+</code></pre>
+</div>
+</div>
+<p><em>Adaptive distance weight</em></p>
+<p>The difference between the 2 different distance weight can be shown clearly when the map object is plotted.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>gi_map_a</span> <span class='op'>=</span> <span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>london.gi_a</span><span class='op'>)</span> <span class='op'>+</span>
+          <span class='fu'>tm_fill</span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"gstat_adaptive"</span>,
+          style <span class='op'>=</span> <span class='st'>"pretty"</span>,
+          palette <span class='op'>=</span> <span class='st'>"-RdBu"</span>,
+          title <span class='op'>=</span> <span class='st'>"local Gi"</span><span class='op'>)</span> <span class='op'>+</span>
+          <span class='fu'>tm_borders</span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>+</span>
+          <span class='fu'>tm_layout</span><span class='op'>(</span>main.title <span class='op'>=</span> <span class='st'>"gi adaptive distance weights"</span>, main.title.size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+
+<span class='va'>gi_map_f</span> <span class='op'>=</span><span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>london.gi_f</span><span class='op'>)</span> <span class='op'>+</span>
+          <span class='fu'>tm_fill</span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"gstat"</span>, 
+          style <span class='op'>=</span> <span class='st'>"pretty"</span>,
+          palette<span class='op'>=</span><span class='st'>"-RdBu"</span>,
+          title <span class='op'>=</span> <span class='st'>"local Gi"</span><span class='op'>)</span> <span class='op'>+</span>
+          <span class='fu'>tm_borders</span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>+</span>
+          <span class='fu'>tm_layout</span><span class='op'>(</span>main.title <span class='op'>=</span> <span class='st'>"gi fixed distance weights"</span>, main.title.size <span class='op'>=</span> <span class='fl'>1</span> <span class='op'>)</span>
+
+<span class='fu'>tmap_arrange</span><span class='op'>(</span><span class='va'>gi_map_a</span>, <span class='va'>gi_map_f</span>, asp<span class='op'>=</span><span class='fl'>1</span>, ncol<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-29-1.png" width="624" /></p>
+</div>
+<h2 id="applying-on-borough-level">5 Applying on Borough level</h2>
+<p>The analysis had focused on Ward level, now similar approach is applied for Borough level data for comparison. There is available information on population at borough level and Since crime rate is often used in the form of crime per 100,000 population, the borough level data would present in terms of crime rate and there would remove any misrepresentation of data due to population factor (i.e. larger population is likely to have higher crime). Hence, differences between Ward and Borough visualization is expected.</p>
+<p>The dataset is different and for simplicity, the data would focus on year 2018 data for this analysis.</p>
+<p><strong>qtm()</strong> is used to give a quick view of crime rate at borough level and total crimes at Ward level for year 2018.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>london_b</span> <span class='op'>&lt;-</span> <span class='fu'>readOGR</span><span class='op'>(</span>dsn <span class='op'>=</span> <span class='st'>"Data/London-wards-2018_ESRI"</span>, 
+                layer <span class='op'>=</span> <span class='st'>"London_Borough_Excluding_MHW"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+              <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>NAME</span> <span class='op'>!=</span><span class='st'>"City of London"</span><span class='op'>)</span>
+
+<span class='va'>crime_his_b</span> <span class='op'>=</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>'data/MPS_Borough_Level_Crime_Historic.csv'</span><span class='op'>)</span>
+<span class='va'>pop</span> <span class='op'>=</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>'data/housing-density-borough.csv'</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>crime_his_tab_b</span> <span class='op'>=</span> <span class='va'>crime_his_b</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>pivot_longer</span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>`Borough`</span>,
+                  <span class='va'>`Major Category`</span>,
+                  <span class='va'>`Minor Category`</span><span class='op'>)</span>,
+                  names_to <span class='op'>=</span> <span class='st'>'Month_Year'</span>, values_to <span class='op'>=</span> <span class='st'>'Count'</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>rename</span><span class='op'>(</span>`Crime_Sub_Category` <span class='op'>=</span> <span class='va'>`Minor Category`</span>,
+         `Crime_Category` <span class='op'>=</span> <span class='va'>`Major Category`</span>,
+         `BoroughName` <span class='op'>=</span> <span class='va'>`Borough`</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>Month_Year<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>Month_Year</span>,<span class='st'>'01'</span><span class='op'>)</span>, format<span class='op'>=</span><span class='st'>"%Y%m%d"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>Year <span class='op'>=</span> <span class='fu'>year</span><span class='op'>(</span><span class='va'>Month_Year</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Year</span> <span class='op'>==</span> <span class='fl'>2018</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>BoroughName</span>, <span class='va'>Year</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>summarize</span><span class='op'>(</span>Total_count <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>Count</span><span class='op'>)</span><span class='op'>)</span> 
+
+<span class='va'>crime_his_tab_b</span> <span class='op'>=</span>  <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>crime_his_tab_b</span>,<span class='va'>pop</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"BoroughName"</span> <span class='op'>=</span> <span class='st'>"Name"</span>,<span class='st'>"Year"</span> <span class='op'>=</span> <span class='st'>"Year"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+                   <span class='fu'>mutate</span><span class='op'>(</span>Crime_rate <span class='op'>=</span> <span class='op'>(</span><span class='va'>Total_count</span> <span class='op'>/</span> <span class='va'>Population</span><span class='op'>*</span><span class='fl'>100000</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>london_b</span><span class='op'>@</span><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>london_b</span><span class='op'>@</span><span class='va'>data</span>,<span class='va'>crime_his_tab_b</span>,
+                                  by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"NAME"</span> <span class='op'>=</span> <span class='st'>"BoroughName"</span><span class='op'>)</span><span class='op'>)</span> 
+
+<span class='fu'>tmap_mode</span><span class='op'>(</span><span class='st'>"plot"</span><span class='op'>)</span>
+<span class='fu'>tmap_arrange</span><span class='op'>(</span><span class='fu'>qtm</span><span class='op'>(</span><span class='va'>london</span>, <span class='st'>"2018"</span>, fill.title <span class='op'>=</span> <span class='st'>"Crimes at Ward level, 2018"</span><span class='op'>)</span>
+             , <span class='fu'>qtm</span><span class='op'>(</span><span class='va'>london_b</span>, <span class='st'>"Crime_rate"</span>, fill.title <span class='op'>=</span> <span class='st'>"Crime rate at Borough level, 2018"</span><span class='op'>)</span> ,
+             asp<span class='op'>=</span><span class='fl'>1</span>, ncol<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-31-1.png" width="624" /></p>
+</div>
+<p>It is observed that the polygons of the Borough across River Thames are not connected and this may post implications as we calculate the neighours.</p>
+<p>As expected the Borough are not able to find the nearest neighbours due to the separation at the river.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-33-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<p>Snap can be adjusted to address this issue on a best effort basis.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>wm_q_b</span> <span class='op'>&lt;-</span> <span class='fu'>poly2nb</span><span class='op'>(</span><span class='va'>london_b</span>, snap <span class='op'>=</span> <span class='fl'>500</span>, row.names <span class='op'>=</span> <span class='va'>london_b</span><span class='op'>$</span><span class='va'>NAME</span>, queen<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>wm_q_b</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Neighbour list object:
+Number of regions: 32 
+Number of nonzero links: 152 
+Percentage nonzero weights: 14.84375 
+Average number of links: 4.75 
+Link number distribution:
+
+2 3 4 5 6 7 
+2 3 9 7 9 2 
+2 least connected regions:
+Havering Bexley with 2 links
+2 most connected regions:
+Brent Wandsworth with 7 links</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-35-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<p>The corresponding mapping local Moran’s I values are as shown below</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-37-1.png" width="624" /></p>
+</div>
+<p>Plotting Moran scatterplot</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-38-1.png" width="624" /></p>
+</div>
+<p>Preparation of LISA cluster map</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>tmap mode set to plotting</code></pre>
+<p><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-40-1.png" width="624" /></p>
+</div>
+<p>Hot Spot and Cold Spot Area Analysis</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-41-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-46-1.png" width="624" /></p>
+</div>
+<h2 id="plotting-of-time-series-with-seasonal-decomposition">6. Plotting of time series with seasonal decomposition</h2>
+<p>A The seasonality of the crime data could be analysed using <strong>ggsdc()</strong> function of <strong><em>ggseas</em></strong> package. This function is able to display the data into different composition for easier understanding.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>time_viz</span> <span class='op'>=</span> <span class='fu'>ggsdc</span><span class='op'>(</span><span class='va'>crime_his_tab_b_time</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>Total_count</span><span class='op'>)</span>
+          , method <span class='op'>=</span> <span class='st'>"seas"</span>, start <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2011</span>, <span class='fl'>1</span><span class='op'>)</span>, frequency <span class='op'>=</span> <span class='fl'>12</span>,
+          facet.titles <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"The original series"</span>, 
+                       <span class='st'>"The underlying trend"</span>, 
+                       <span class='st'>"Regular seasonal patterns"</span>, 
+                       <span class='st'>"All the randomness left"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+          <span class='fu'>geom_line</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+          <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>'Date'</span>, y <span class='op'>=</span> <span class='st'>"Crimes In London"</span><span class='op'>)</span> 
+
+<span class='va'>time_viz</span>
+</code></pre>
+</div>
+<p><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-48-1.png" width="624" /></p>
+</div>
+<h2 id="finalized-visualization">7. Finalized visualization</h2>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-49-1.png" width="624" /><img src="Huiyong_assignment_files/figure-html5/unnamed-chunk-49-2.png" width="624" /></p>
+</div>
+<h2 id="conclusion-insights">8. Conclusion &amp; insights</h2>
+<p>Data exploration and cleaning is essential prior to the visualization.</p>
+<p>The visualization reveals that the certain area within London tends to have higher crime rate and there is a seasonal trend in crimes. Local Moran’s I is able to identify clusters and outliers, while Gi statistics are able to detect the cold and hot spots of crimes.It is important to include underlying analysis method such that the color contrast shown on the visualized map is meaningful.</p>
+<p>Westminster, a Borough in central London is observed to have comparatively high crime rate compared to the rest of hte metropolitan. Further analysis could be done in the future to understand what factors could have contribute to its high crime rate.</p>
+<h2 id="reference">9. Reference</h2>
+<ol type="1">
+<li><p><a href="https://www.rpubs.com/tskam/IS415-Hands-on_Ex07">IS415 Hands-on Exercise 7: Spatial Clustering of Geographically Referenced Attribute, Kam Tin Seong, 2019, https://www.rpubs.com/tskam/IS415-Hands-on_Ex07</a></p></li>
+<li><p><a href="https://maczokni.github.io/crimemapping_textbook_bookdown/global-and-local-spatial-autocorrelation.html">Global and local spatial autocorrelation, Juanjo Medina and Reka Solymosi, 2019, https://maczokni.github.io/crimemapping_textbook_bookdown/global-and-local-spatial-autocorrelation.html</a></p></li>
+<li><p><a href="https://cran.r-project.org/web/packages/ggseas/ggseas.pdf">ggseas V0.5.4 R package, Peter Ellis, https://cran.r-project.org/web/packages/ggseas/ggseas.pdf</a></p></li>
+<li><p><a href="https://www.jstatsoft.org/article/view/v084i06/v84i06.pdf">tmap: Thematic Maps in R, Martijn Tennekes, 2018, https://ij-healthgeographics.biomedcentral.com/articles/10.1186/1476-072X-8-36</a>, <a href="https://www.jstatsoft.org/article/view/v084i06/v84i06.pdf" class="uri">https://www.jstatsoft.org/article/view/v084i06/v84i06.pdf</a></p></li>
+<li><p><a href="https://ij-healthgeographics.biomedcentral.com/articles/10.1186/1476-072X-8-36">Nakarin Chaikaew, Nitin K Tripathi &amp; Marc Souris, Exploring spatial patterns and hotspots of diarrhea in Chiang Mai, Thailand, International Journal of Health Geographics, 24 June 2009, https://ij-healthgeographics.biomedcentral.com/articles/10.1186/1476-072X-8-36</a></p></li>
+</ol>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
