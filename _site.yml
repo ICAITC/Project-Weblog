@@ -13,10 +13,6 @@ navbar:
       menu:
         - text: "Proposal"
           href: Proposal.html
-        - text: "Individual Assignment"
-          menu:
-            - text: "EDA"
-            - href: Project_assignment.html
         - text: "Poster"
           href: poster.html
         - text: "Application"
@@ -26,4 +22,8 @@ navbar:
         - text: "---"
         - text: "Application User Guide"
           href: application_user_guide.html
+    - text: "Individual Assignment"
+      menu:
+        - text: "EDA"
+        - href: Project_assignment.html
 output: distill::distill_article
