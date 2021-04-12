@@ -652,7 +652,7 @@ ggplot(ggdend_data, horiz=TRUE) +
 
 ```
 
-The output shows that converting to ggplot and changing the aspect ratio does not help much. The labels are still cropped, and now they are placed too near to the tree branches.
+Changing the aspect ratio does not help much, but scaling the y-axis helps. However, the labels are placed very directly at the end of the branches now.
 
 #### ggdendro
 
