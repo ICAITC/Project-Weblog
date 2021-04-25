@@ -173,7 +173,7 @@ There are two parts of the input:
 6. Select approach to calculate bandwidth, which is the  distance(in metres) or the number of neighbours used for each local regression model. Available options are Cross-validation (CV) approach and Akaike Information Criterion corrected (AICc) approach.
 
 
-7. Select adaptive bandwidth or provide manual input for the bandwidth.
+7. Select adaptive bandwidth, fixed bandwidth or provide manual input for the bandwidth.
 
 8. Select Power of Minkowski distance. The options are Euclidean distance with p=2 and Manhattan distance with p = 1. 
 
