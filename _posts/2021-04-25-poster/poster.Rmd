@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 title: "The Prime Crime Area - Poster"
 description: |
@@ -66,3 +67,73 @@ knitr::include_graphics("Poster.jpg")
 
 
 
+=======
+---
+title: "The Prime Crime Area - Poster"
+description: |
+preview: images/cover.jpg
+author:
+  - name: GABRIELLA PAULINE DJOJOSAPUTRO
+    affiliation: School of Information Systems, Singapore Management University
+    affiliation_url: https://smu.edu.sg
+  - name: TAN HUIYONG 
+    affiliation: School of Information Systems, Singapore Management University
+    affiliation_url: https://smu.edu.sg
+  - name: TOH MEI SIEW
+    affiliation: School of Information Systems, Singapore Management University
+    affiliation_url: https://smu.edu.sg
+date: 2021-04-25
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+```{r}
+knitr::include_graphics("Poster.jpg")
+``` 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> d6c86ab0934ec26f5ee0a34d79908a1741deec3f
