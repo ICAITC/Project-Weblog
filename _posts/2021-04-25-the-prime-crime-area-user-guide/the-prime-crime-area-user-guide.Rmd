@@ -19,7 +19,6 @@ output:
     toc: true
     toc_float: true
     smooth_scroll: true
-draft: true
 ---
 
 
