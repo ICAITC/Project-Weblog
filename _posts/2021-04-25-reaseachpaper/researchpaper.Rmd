@@ -1,0 +1,55 @@
+---
+title: "Research Paper"
+description: |
+  The research paper touches on the theoretical aspect of the R Shiny App and it aims to provide the motivation, objetive and the findings.
+author:
+  - name: GABRIELLA PAULINE DJOJOSAPUTRO
+    affiliation: School of Information Systems, Singapore Management University
+    affiliation_url: https://smu.edu.sg
+  - name: TAN HUIYONG 
+    affiliation: School of Information Systems, Singapore Management University
+    affiliation_url: https://smu.edu.sg
+  - name: TOH MEI SIEW
+    affiliation: School of Information Systems, Singapore Management University
+    affiliation_url: https://smu.edu.sg
+date: 04-25-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_float: true
+    smooth_scroll: true
+header-includes:
+  - \usepackage{pdfpages}
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+The research paper is appended below.
+
+```{r}
+rmarkdown::render("./SpatiotemporalAnalysis/SpatiotemporalAnalysis.rmd",
+                  output_file = "SpatiotemporalAnalysis/SpatiotemporalAnalysis_test.pdf")
+```
+\includepdf[pages={1}]{SpatiotemporalAnalysis/SpatiotemporalAnalysis.pdf}
+
+
+![](Images/SpatiotemporalAnalysis-page-001.jpg)
+
+![](Images/SpatiotemporalAnalysis-page-002.jpg)
+
+![](Images/SpatiotemporalAnalysis-page-003.jpg)
+
+![](Images/SpatiotemporalAnalysis-page-004.jpg)
+
+![](Images/SpatiotemporalAnalysis-page-005.jpg)
+
+![](Images/SpatiotemporalAnalysis-page-006.jpg)
+
+![](Images/SpatiotemporalAnalysis-page-007.jpg)
+
+![](Images/SpatiotemporalAnalysis-page-008.jpg)
+
