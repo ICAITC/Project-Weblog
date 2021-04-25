@@ -68,7 +68,7 @@ Getis and Ord’s G-Statistics (Gi Fixed and Gi Adaptive) | For detection of hot
 
 3. Select additional parameters required, depending of the reference values chosen. 
 
-![](./images/ESDA_Moran.png){width:50%}
+![](./images/ESDA_Moran.png){width=50%}
 
 4. Click "Run!" and the results is shown in the map.
 
